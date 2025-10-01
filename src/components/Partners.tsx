@@ -1,4 +1,5 @@
-import { Handshake } from "lucide-react";
+import { Handshake, ChevronDown } from "lucide-react";
+import { useState } from "react";
 import ScrollAnimation from "./ScrollAnimation";
 import headsetImage from "@/assets/headset-1.jpg";
 import thikaSchool from "@/assets/partners/thika-school.png";
@@ -12,6 +13,8 @@ import ddqic from "@/assets/partners/ddqic.png";
 import innovateNow from "@/assets/partners/innovate-now.png";
 
 const Partners = () => {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
   const partners = [
     {
       name: "Thika School for the Blind",
@@ -83,11 +86,14 @@ const Partners = () => {
               {partners.map((partner, index) => (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-xl border-2 border-border bg-card transition-all duration-500 hover:shadow-2xl hover:z-10 hover:scale-105"
+                  className="group relative overflow-hidden rounded-xl border-2 border-border bg-card transition-all duration-500 hover:shadow-2xl"
                   style={{ transitionDelay: `${index * 50}ms` }}
+                  onMouseEnter={() => setExpandedCard(index)}
+                  onMouseLeave={() => setExpandedCard(null)}
+                  onClick={() => setExpandedCard(expandedCard === index ? null : index)}
                 >
                   {/* Card Content */}
-                  <div className="relative z-10 p-6 bg-white/95 backdrop-blur-sm">
+                  <div className="relative z-10 p-6 bg-white/95 backdrop-blur-sm cursor-pointer">
                     <div className="flex flex-col items-center gap-4">
                       <div className="w-full h-24 flex items-center justify-center p-2 bg-white rounded-lg">
                         <img 
@@ -96,46 +102,29 @@ const Partners = () => {
                           className="max-w-full max-h-full object-contain"
                         />
                       </div>
-                      <h4 className="text-center font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                        {partner.name}
-                      </h4>
+                      <div className="flex items-center gap-2">
+                        <h4 className="text-center font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                          {partner.name}
+                        </h4>
+                        <ChevronDown 
+                          className={`w-5 h-5 text-primary transition-transform duration-300 ${
+                            expandedCard === index ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </div>
                     </div>
                   </div>
 
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <img 
-                        src={headsetImage} 
-                        alt="ProVision Device"
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/98 via-primary/85 to-primary/70" />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="relative h-full flex flex-col justify-between p-6 text-white">
-                      {/* Logo and Name at Top */}
-                      <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-lg p-3">
-                        <div className="w-12 h-12 flex items-center justify-center bg-white rounded">
-                          <img 
-                            src={partner.logo} 
-                            alt={`${partner.name} logo`}
-                            className="max-w-full max-h-full object-contain"
-                          />
-                        </div>
-                        <h4 className="font-bold text-foreground text-sm">
-                          {partner.name}
-                        </h4>
-                      </div>
-                      
-                      {/* Description at Bottom */}
-                      <div className="space-y-2">
-                        <p className="text-sm leading-relaxed">
-                          {partner.description}
-                        </p>
-                      </div>
+                  {/* Expandable Description */}
+                  <div 
+                    className={`overflow-hidden transition-all duration-500 ease-in-out bg-gradient-to-b from-primary/5 to-primary/10 ${
+                      expandedCard === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="p-6 pt-0">
+                      <p className="text-sm text-foreground/80 leading-relaxed">
+                        {partner.description}
+                      </p>
                     </div>
                   </div>
                 </div>
