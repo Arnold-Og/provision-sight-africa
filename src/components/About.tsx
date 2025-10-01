@@ -67,7 +67,7 @@ const About = () => {
                   <div className="text-white space-y-2">
                     <h4 className="text-xl font-bold">Award-Winning Prototype</h4>
                     <p className="text-sm leading-relaxed">
-                      Our first successful prototype featuring Jeremy, our user persona. Winner of first place at the Ideas Festival at Strathmore University, earning Ksh 350,000.
+                      Uses an integrated camera to scan your environment, acquire real-time data, and translate it into navigation directions, text reading assistance, or recognition of people around you.
                     </p>
                   </div>
                 </div>
@@ -82,7 +82,8 @@ const About = () => {
                   <div className="text-white space-y-2">
                     <h4 className="text-xl font-bold">Advanced AI Technology</h4>
                     <p className="text-sm leading-relaxed">
-                      Uses an integrated camera to scan your environment, acquire real-time data, and translate it into navigation directions, text reading assistance, or recognition of people around you.
+                      Our first successful prototype featuring Jeremy, our user persona. Winner of first place at the Ideas Festival at Strathmore University, earning Ksh 350,000.
+                      
                     </p>
                   </div>
                 </div>
