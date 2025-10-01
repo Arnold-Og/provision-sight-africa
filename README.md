@@ -1,73 +1,84 @@
-# Welcome to your Lovable project
+# ProVision – Assistive Navigation Platform
 
-## Project info
+## 🌍 About the Project
 
-**URL**: https://lovable.dev/projects/c24f5aac-6bed-4c37-8216-ce1e3e3c7373
+ProVision is an innovative assistive technology platform designed to empower visually impaired individuals with greater independence and confidence.Using advanced **AI-powered navigation**, ProVision enables safe movement indoors and outdoors, text reading, person identification, and emergency communication. This project is part of ProVision’s mission to **redefine accessibility** through cutting-edge technology.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## ✨ Features
 
-**Use Lovable**
+* 🏠 **Indoor Navigation** – Move confidently inside rooms and unfamiliar environments
+* 🌳 **Outdoor Navigation** – Navigate fields, paths, and open spaces safely
+* 👥 **Person Identification** – Detect and identify people nearby with real-time audio feedback
+* 📖 **Text Reading** – Read signs, documents, and handwritten content aloud
+* 🚨 **Emergency Contacting** – Instantly share location and distress calls with trusted contacts
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c24f5aac-6bed-4c37-8216-ce1e3e3c7373) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ⚙️ Tech Stack
 
-**Use your preferred IDE**
+* **Frontend:** React (Next.js) + Tailwind CSS
+* **UI Components:** shadcn/ui
+* **Animations:** Framer Motion
+* **Backend / AI:** Proprietary ProVision algorithms
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+### Prerequisites
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+* Node.js (v18 or later)
+* npm or yarn
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+# Clone this repository
+git clone https://github.com/ProVisionOrg/provision-platform.git
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Navigate into the project folder
+cd provision-platform
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📖 Usage
 
-**Use GitHub Codespaces**
+After running the development server, open:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+http://localhost:3000
+```
 
-## What technologies are used for this project?
+in your browser to view the ProVision application.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🏢 Organization
 
-## How can I deploy this project?
+This project is maintained by **ProVision**.
+For partnership, collaboration, or inquiries, please contact us at:
+📧 [blindsightafrica@gmail.com](mailto:blindsightafrica@gmail.com)
 
-Simply open [Lovable](https://lovable.dev/projects/c24f5aac-6bed-4c37-8216-ce1e3e3c7373) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 📜 License
 
-Yes, you can!
+```
+© 2025 ProVision. All Rights Reserved.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This software and its associated files are proprietary and confidential.  
+Unauthorized copying, modification, distribution, or use of this code,  
+via any medium, is strictly prohibited without prior written consent  
+from ProVision.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Patent protection applies to the core idea and implementation.  
+```
