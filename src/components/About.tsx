@@ -60,18 +60,32 @@ const About = () => {
               <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
                 <img 
                   src={headset1} 
-                  alt="ProVision Headset Device" 
+                  alt="ProVision Headset Device - First Prototype" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="text-white space-y-2">
+                    <h4 className="text-xl font-bold">Award-Winning Prototype</h4>
+                    <p className="text-sm leading-relaxed">
+                      Our first successful prototype featuring Jeremy, our user persona. Winner of first place at the Ideas Festival at Strathmore University, earning Ksh 350,000.
+                    </p>
+                  </div>
+                </div>
               </div>
               <div className="relative group overflow-hidden rounded-2xl shadow-2xl">
                 <img 
                   src={headset2} 
-                  alt="ProVision Technology" 
+                  alt="ProVision AI-Powered Technology" 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="text-white space-y-2">
+                    <h4 className="text-xl font-bold">Advanced AI Technology</h4>
+                    <p className="text-sm leading-relaxed">
+                      Uses an integrated camera to scan your environment, acquire real-time data, and translate it into navigation directions, text reading assistance, or recognition of people around you.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </ScrollAnimation>
