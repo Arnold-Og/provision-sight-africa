@@ -5,18 +5,18 @@ import ScrollAnimation from "./ScrollAnimation";
 const Testimonials = () => {
   const testimonials = [
     {
-      quote: "Navigation at KSB has been transformed thanks to ProVision!",
-      author: "Alex Kabuga",
-      role: "Director, KSB",
+      quote: "I am really excited to see how far you can go with this! Count me in for your journey.",
+      author: "Alex Kaluyu",
+      role: "Head of Education and Rehabilitation, KSB",
     },
     {
-      quote: "I can now move with more independence than ever before.",
-      author: "Beth Mwenda",
+      quote: "I can't wait to see how this will allow me move with more independence than ever before.",
+      author: "Bethlyn Wandia",
       role: "Receptionist, KSB",
     },
     {
-      quote: "This program is making a real difference for the visually impaired community.",
-      author: "Kristine Nyabora",
+      quote: "This program is going to making a real difference for the visually impaired community.",
+      author: "Kristine Nyabera",
       role: "Programme Officer, IAPB",
     },
   ];
