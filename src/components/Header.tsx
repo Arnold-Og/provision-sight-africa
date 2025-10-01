@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Share2 } from "lucide-react";
 import provisionLogo from "@/assets/provision-logo.jpg";
+import qrLinkedIn from "@/assets/qr-linkedin.png";
+import qrInstagram from "@/assets/qr-instagram.png";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -60,6 +64,42 @@ const Header = () => {
           >
             Partners
           </button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button size="sm" variant="outline" className="gap-2">
+                <Share2 className="h-4 w-4" />
+                Quick Share
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Connect With Us</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-6 py-4">
+                <p className="text-sm text-muted-foreground text-center">
+                  Scan the QR codes below to follow us on social media and stay updated with ProVision's latest developments.
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="flex flex-col items-center space-y-3">
+                    <img 
+                      src={qrLinkedIn} 
+                      alt="LinkedIn QR Code" 
+                      className="w-full max-w-[160px] h-auto"
+                    />
+                    <p className="text-sm font-medium">LinkedIn</p>
+                  </div>
+                  <div className="flex flex-col items-center space-y-3">
+                    <img 
+                      src={qrInstagram} 
+                      alt="Instagram QR Code" 
+                      className="w-full max-w-[160px] h-auto"
+                    />
+                    <p className="text-sm font-medium">Instagram</p>
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
           <Button
             size="sm"
             onClick={() => scrollToSection("contact")}
