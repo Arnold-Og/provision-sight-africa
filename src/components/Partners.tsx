@@ -121,7 +121,7 @@ const Partners = () => {
                       expandedCard === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <div className="p-6 pt-0">
+                    <div className="p-6 pt-2">
                       <p className="text-sm text-foreground/80 leading-relaxed">
                         {partner.description}
                       </p>
