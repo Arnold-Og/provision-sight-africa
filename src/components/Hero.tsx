@@ -63,7 +63,7 @@ const Hero = () => {
               size="lg"
               variant="outline"
               onClick={scrollToContact}
-              className="text-lg px-8 py-6 border-secondary text-secondary hover:bg-secondary hover:text-primary"
+              className="text-lg px-8 py-6 border-secondary text-black hover:bg-secondary hover:text-primary"
             >
               Get Started
             </Button>
