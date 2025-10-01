@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import { ArrowRight, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
-import heroImage from "@/assets/hero-image.jpg";
+import heroImage from "@/assets/hero-bg.webp";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);

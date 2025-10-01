@@ -1,18 +1,63 @@
 import { Handshake } from "lucide-react";
 import ScrollAnimation from "./ScrollAnimation";
+import headsetImage from "@/assets/headset-1.jpg";
+import thikaSchool from "@/assets/partners/thika-school.png";
+import kilimanjaroTrust from "@/assets/partners/kilimanjaro-blind-trust.png";
+import kenyaSociety from "@/assets/partners/kenya-society-blind.png";
+import strathmore from "@/assets/partners/strathmore.png";
+import ibizAfrica from "@/assets/partners/ibiz-africa.png";
+import at4d from "@/assets/partners/at4d.png";
+import zerobionic from "@/assets/partners/zerobionic.png";
+import ddqic from "@/assets/partners/ddqic.png";
+import innovateNow from "@/assets/partners/innovate-now.png";
 
 const Partners = () => {
   const partners = [
-    "Kilimanjaro School for the Blind",
-    "Kilimanjaro Blind Trust",
-    "ATiD",
-    "ADD International",
-    "Strathmore University – iBiz Africa",
-    "Zerobionic",
-    "Innovate Now",
-    "DDDCIC – Queen's University",
-    "InAble",
-    "DOTIC",
+    {
+      name: "Thika School for the Blind",
+      logo: thikaSchool,
+      description: "A leading institution providing quality education and skills training for visually impaired students in Kenya.",
+    },
+    {
+      name: "Kilimanjaro Blind Trust",
+      logo: kilimanjaroTrust,
+      description: "Dedicated to improving literacy and independence for blind and visually impaired individuals in East Africa through Braille and accessible technology.",
+    },
+    {
+      name: "Kenya Society for the Blind",
+      logo: kenyaSociety,
+      description: "Kenya's premier organization advocating for the rights and empowerment of persons with visual disabilities.",
+    },
+    {
+      name: "Strathmore University",
+      logo: strathmore,
+      description: "A leading African university fostering innovation and entrepreneurship through research and technology development.",
+    },
+    {
+      name: "iBiz Africa",
+      logo: ibizAfrica,
+      description: "Strathmore's innovation hub driving digital transformation and ICT research across Africa.",
+    },
+    {
+      name: "AT4D",
+      logo: at4d,
+      description: "Assistive Technologies for Disability Trust - advancing accessible technology solutions for persons with disabilities globally.",
+    },
+    {
+      name: "Zerobionic",
+      logo: zerobionic,
+      description: "An innovative technology company developing cutting-edge assistive devices for enhanced independence.",
+    },
+    {
+      name: "DDQIC - Queen's University",
+      logo: ddqic,
+      description: "Dunin-Deshpande Queen's Innovation Centre - fostering social innovation and entrepreneurship for positive impact.",
+    },
+    {
+      name: "Innovate Now",
+      logo: innovateNow,
+      description: "A dynamic incubator supporting early-stage startups and social enterprises with mentorship and resources.",
+    },
   ];
 
   return (
@@ -34,16 +79,65 @@ const Partners = () => {
           </ScrollAnimation>
 
           <ScrollAnimation delay={200}>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {partners.map((partner, index) => (
                 <div
                   key={index}
-                  className="p-6 rounded-lg border-2 border-border bg-card hover:border-primary transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group"
+                  className="group relative overflow-hidden rounded-xl border-2 border-border bg-card transition-all duration-500 hover:shadow-2xl hover:z-10 hover:scale-105"
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
-                  <p className="text-center font-medium text-foreground group-hover:text-primary transition-colors">
-                    {partner}
-                  </p>
+                  {/* Card Content */}
+                  <div className="relative z-10 p-6 bg-white/95 backdrop-blur-sm">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="w-full h-24 flex items-center justify-center p-2 bg-white rounded-lg">
+                        <img 
+                          src={partner.logo} 
+                          alt={`${partner.name} logo`}
+                          className="max-w-full max-h-full object-contain"
+                        />
+                      </div>
+                      <h4 className="text-center font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                        {partner.name}
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                      <img 
+                        src={headsetImage} 
+                        alt="ProVision Device"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/98 via-primary/85 to-primary/70" />
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="relative h-full flex flex-col justify-between p-6 text-white">
+                      {/* Logo and Name at Top */}
+                      <div className="flex items-center gap-3 bg-white/95 backdrop-blur-sm rounded-lg p-3">
+                        <div className="w-12 h-12 flex items-center justify-center bg-white rounded">
+                          <img 
+                            src={partner.logo} 
+                            alt={`${partner.name} logo`}
+                            className="max-w-full max-h-full object-contain"
+                          />
+                        </div>
+                        <h4 className="font-bold text-foreground text-sm">
+                          {partner.name}
+                        </h4>
+                      </div>
+                      
+                      {/* Description at Bottom */}
+                      <div className="space-y-2">
+                        <p className="text-sm leading-relaxed">
+                          {partner.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
