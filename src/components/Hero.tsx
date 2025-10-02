@@ -46,7 +46,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-secondary/90 max-w-2xl mx-auto">
-            With our assistive device, you can now move about safely and independently — without strain or mental spatial translation.
+            With our assistive device, you can now move about safely and independently — with almost as much spatial information as a sighted person.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
