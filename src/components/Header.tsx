@@ -97,7 +97,7 @@ const Header = () => {
                         className={`w-full max-w-[200px] h-auto transition-all duration-300 ${
                           unblurredQr === 'linkedin' 
                             ? 'blur-0 scale-105' 
-                            : 'blur-sm hover:blur-[2px]'
+                            : 'blur-md hover:blur-lg'
                         }`}
                       />
                       {unblurredQr !== 'linkedin' && (
@@ -121,7 +121,7 @@ const Header = () => {
                         className={`w-full max-w-[200px] h-auto transition-all duration-300 ${
                           unblurredQr === 'instagram' 
                             ? 'blur-0 scale-105' 
-                            : 'blur-sm hover:blur-[2px]'
+                            : 'blur-md hover:blur-lg'
                         }`}
                       />
                       {unblurredQr !== 'instagram' && (
@@ -145,7 +145,7 @@ const Header = () => {
                         className={`w-full max-w-[200px] h-auto transition-all duration-300 ${
                           unblurredQr === 'website' 
                             ? 'blur-0 scale-105' 
-                            : 'blur-sm hover:blur-[2px]'
+                            : 'blur-md hover:blur-lg'
                         }`}
                       />
                       {unblurredQr !== 'website' && (
