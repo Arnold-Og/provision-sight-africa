@@ -1,7 +1,6 @@
 import { Handshake, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import ScrollAnimation from "./ScrollAnimation";
-import headsetImage from "@/assets/headset-1.jpg";
 import thikaSchool from "@/assets/partners/thika-school.png";
 import kilimanjaroTrust from "@/assets/partners/kilimanjaro-blind-trust.png";
 import kenyaSociety from "@/assets/partners/kenya-society-blind.png";
