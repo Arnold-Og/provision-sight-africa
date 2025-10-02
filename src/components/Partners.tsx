@@ -48,7 +48,7 @@ const Partners = () => {
     {
       name: "Zerobionic",
       logo: zerobionic,
-      description: "An innovative technology company developing cutting-edge assistive devices for enhanced independence.",
+      description: "Zerobionic is transforming Africa by bridging the gap through STEM, empowering communities through technology, and pioneering inclusive innovation in prosthetics—closing the STEM gap in Africa one solution at a time.",
     },
     {
       name: "DDQIC - Queen's University",
