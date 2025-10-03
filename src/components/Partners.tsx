@@ -1,7 +1,6 @@
 import { Handshake, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import ScrollAnimation from "./ScrollAnimation";
-import headsetImage from "@/assets/headset-1.jpg";
 import thikaSchool from "@/assets/partners/thika-school.png";
 import kilimanjaroTrust from "@/assets/partners/kilimanjaro-blind-trust.png";
 import kenyaSociety from "@/assets/partners/kenya-society-blind.png";
@@ -49,7 +48,7 @@ const Partners = () => {
     {
       name: "Zerobionic",
       logo: zerobionic,
-      description: "An innovative technology company developing cutting-edge assistive devices for enhanced independence.",
+      description: "Zerobionic is transforming Africa by bridging the gap through STEM, empowering communities through technology, and pioneering inclusive innovation in prosthetics—closing the STEM gap in Africa one solution at a time.",
     },
     {
       name: "DDQIC - Queen's University",

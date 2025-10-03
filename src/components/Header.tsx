@@ -9,6 +9,7 @@ import qrWebsite from "@/assets/qr-website.svg";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [unblurredQr, setUnblurredQr] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,10 @@ const Header = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleQrClick = (qrType: string) => {
+    setUnblurredQr(unblurredQr === qrType ? null : qrType);
   };
 
   return (
@@ -72,38 +77,86 @@ const Header = () => {
                 Quick Share
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-2xl">
               <DialogHeader>
                 <DialogTitle>Connect With Us</DialogTitle>
               </DialogHeader>
               <div className="space-y-6 py-4">
                 <p className="text-sm text-muted-foreground text-center">
-                  Scan the QR codes below to follow us on social media and visit our website.
+                  Scan the QR codes below to follow us on social media and stay updated with ProVision's latest developments.
                 </p>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="flex flex-col items-center space-y-3">
-                    <img 
-                      src={qrLinkedIn} 
-                      alt="LinkedIn QR Code" 
-                      className="w-full max-w-[120px] h-auto"
-                    />
-                    <p className="text-xs font-medium">LinkedIn</p>
+                <div className="grid grid-cols-3 gap-6">
+                  <div className="flex flex-col items-center space-y-4">
+                    <div 
+                      className="relative cursor-pointer group"
+                      onClick={() => handleQrClick('linkedin')}
+                    >
+                      <img 
+                        src={qrLinkedIn} 
+                        alt="LinkedIn QR Code" 
+                        className={`w-full max-w-[200px] h-auto transition-all duration-300 ${
+                          unblurredQr === 'linkedin' 
+                            ? 'blur-0 scale-105' 
+                            : 'blur-md hover:blur-lg'
+                        }`}
+                      />
+                      {unblurredQr !== 'linkedin' && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+                          <p className="text-white text-xs font-medium bg-black/50 px-2 py-1 rounded-full">
+                            Click to scan
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-sm font-medium">LinkedIn</p>
                   </div>
-                  <div className="flex flex-col items-center space-y-3">
-                    <img 
-                      src={qrInstagram} 
-                      alt="Instagram QR Code" 
-                      className="w-full max-w-[120px] h-auto"
-                    />
-                    <p className="text-xs font-medium">Instagram</p>
+                  <div className="flex flex-col items-center space-y-4">
+                    <div 
+                      className="relative cursor-pointer group"
+                      onClick={() => handleQrClick('instagram')}
+                    >
+                      <img 
+                        src={qrInstagram} 
+                        alt="Instagram QR Code" 
+                        className={`w-full max-w-[200px] h-auto transition-all duration-300 ${
+                          unblurredQr === 'instagram' 
+                            ? 'blur-0 scale-105' 
+                            : 'blur-md hover:blur-lg'
+                        }`}
+                      />
+                      {unblurredQr !== 'instagram' && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+                          <p className="text-white text-xs font-medium bg-black/50 px-2 py-1 rounded-full">
+                            Click to scan
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-sm font-medium">Instagram</p>
                   </div>
-                  <div className="flex flex-col items-center space-y-3">
-                    <img 
-                      src={qrWebsite} 
-                      alt="Website QR Code" 
-                      className="w-full max-w-[120px] h-auto"
-                    />
-                    <p className="text-xs font-medium">Website</p>
+                  <div className="flex flex-col items-center space-y-4">
+                    <div 
+                      className="relative cursor-pointer group"
+                      onClick={() => handleQrClick('website')}
+                    >
+                      <img 
+                        src={qrWebsite} 
+                        alt="Website QR Code" 
+                        className={`w-full max-w-[200px] h-auto transition-all duration-300 ${
+                          unblurredQr === 'website' 
+                            ? 'blur-0 scale-105' 
+                            : 'blur-md hover:blur-lg'
+                        }`}
+                      />
+                      {unblurredQr !== 'website' && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+                          <p className="text-white text-xs font-medium bg-black/50 px-2 py-1 rounded-full">
+                            Click to scan
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-sm font-medium">Website</p>
                   </div>
                 </div>
               </div>
