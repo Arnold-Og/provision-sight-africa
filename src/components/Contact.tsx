@@ -44,7 +44,12 @@ const KEEP_ME_NOTIFIED_SUBJECT = "Keep me notified – ProVision";
 const KEEP_ME_NOTIFIED_MESSAGE =
   "Please add me to your mailing list for product updates and news.";
 
-type FormData = { name: string; email: string; subject: string; message: string };
+type FormData = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
 const Contact = () => {
   const [notificationType, setNotificationType] = useState<string>(
@@ -100,7 +105,9 @@ const Contact = () => {
         message: currentType?.defaultMessage ?? "",
       });
     } catch {
-      toast.error("Something went wrong. Please try again or email us directly.");
+      toast.error(
+        "Something went wrong. Please try again or email us directly."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -175,7 +182,8 @@ const Contact = () => {
                     Or send us a message
                   </p>
                   <p className="text-muted-foreground">
-                    Fill out the form and we'll get back to you as soon as possible.
+                    Fill out the form and we'll get back to you as soon as
+                    possible.
                   </p>
                 </div>
                 <div className="p-6 rounded-lg bg-card border-2 border-border space-y-4">
@@ -184,7 +192,8 @@ const Contact = () => {
                     Keep me notified
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    Get updates on awareness, education, leads, trials, and demos.
+                    Get updates on awareness, education, leads, trials, and
+                    demos.
                   </p>
                   <form
                     name={KEEP_ME_NOTIFIED_FORM_NAME}
@@ -194,7 +203,11 @@ const Contact = () => {
                     onSubmit={handleKeepMeNotified}
                     className="flex flex-col sm:flex-row gap-2"
                   >
-                    <input type="hidden" name="form-name" value={KEEP_ME_NOTIFIED_FORM_NAME} />
+                    <input
+                      type="hidden"
+                      name="form-name"
+                      value={KEEP_ME_NOTIFIED_FORM_NAME}
+                    />
                     <Input
                       type="email"
                       placeholder="Your email"
@@ -226,7 +239,11 @@ const Contact = () => {
                 onSubmit={handleSubmit}
                 className="space-y-4"
               >
-                <input type="hidden" name="form-name" value={CONTACT_FORM_NAME} />
+                <input
+                  type="hidden"
+                  name="form-name"
+                  value={CONTACT_FORM_NAME}
+                />
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 block">
                     What can we help with?
@@ -294,7 +311,12 @@ const Contact = () => {
                     className="w-full resize-none"
                   />
                 </div>
-                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  size="lg"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Sending…" : "Send Message"}
                 </Button>
               </form>
