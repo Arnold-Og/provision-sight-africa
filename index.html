@@ -48,6 +48,21 @@
     />
   </head>
 
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-HS9QCZZM0Y"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-HS9QCZZM0Y");
+  </script>
+
   <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript
@@ -59,7 +74,6 @@
       ></iframe
     ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
 
     <div id="root"></div>
     <!-- Hidden forms for Netlify Forms (SPA): same name/fields so deploy detects them -->
@@ -79,18 +93,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
-<!-- Google tag (gtag.js) -->
-<script
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-HS9QCZZM0Y"
-></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-
-  gtag("config", "G-HS9QCZZM0Y");
-</script>
