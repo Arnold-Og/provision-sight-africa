@@ -10,7 +10,7 @@ import {
 } from "./ui/dialog";
 import { Share2 } from "lucide-react";
 import provisionLogo from "@/assets/provision-logo.jpg";
-import { QUICK_SHARE_QR_URLS, type QuickShareKey } from "@/lib/quick-share";
+import { QUICK_SHARE_URLS, type QuickShareKey } from "@/lib/quick-share";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,9 +35,9 @@ const Header = () => {
 
   useEffect(() => {
     const generateQrCodes = async () => {
-      const entries = (Object.keys(QUICK_SHARE_QR_URLS) as QuickShareKey[]).map(
+      const entries = (Object.keys(QUICK_SHARE_URLS) as QuickShareKey[]).map(
         async (key) => {
-          const url = QUICK_SHARE_QR_URLS[key];
+          const url = QUICK_SHARE_URLS[key];
           const dataUrl = await QRCode.toDataURL(url, {
             width: 256,
             margin: 2,
