@@ -28,6 +28,8 @@ const Hero = () => {
           src={heroImage}
           alt="Empowering independence"
           className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-primary/60" />
       </div>

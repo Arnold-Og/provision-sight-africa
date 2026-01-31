@@ -1,23 +1,27 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Features from "@/components/Features";
-import Testimonials from "@/components/Testimonials";
-import Partners from "@/components/Partners";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+
+const About = lazy(() => import("@/components/About"));
+const Features = lazy(() => import("@/components/Features"));
+const Testimonials = lazy(() => import("@/components/Testimonials"));
+const Partners = lazy(() => import("@/components/Partners"));
+const Contact = lazy(() => import("@/components/Contact"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
       <Hero />
-      <About />
-      <Features />
-      <Testimonials />
-      <Partners />
-      <Contact />
-      <Footer />
+      <Suspense fallback={<div className="min-h-[50vh]" />}>
+        <About />
+        <Features />
+        <Testimonials />
+        <Partners />
+        <Contact />
+        <Footer />
+      </Suspense>
     </div>
   );
 };

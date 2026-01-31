@@ -99,6 +99,8 @@ const Partners = () => {
                           src={partner.logo} 
                           alt={`${partner.name} logo`}
                           className="max-w-full max-h-full object-contain"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                       <div className="flex items-center gap-2">
