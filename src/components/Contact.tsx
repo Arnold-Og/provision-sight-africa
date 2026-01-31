@@ -12,6 +12,7 @@ import {
 } from "./ui/select";
 import { toast } from "sonner";
 import ScrollAnimation from "./ScrollAnimation";
+import { trackEvent } from "./GoogleAnalytics";
 
 const CONTACT_FORM_NAME = "contact";
 const KEEP_ME_NOTIFIED_FORM_NAME = "keep-me-notified";
@@ -136,6 +137,9 @@ const Contact = () => {
       });
 
       if (!res.ok) throw new Error("Submission failed");
+      trackEvent("generate_lead", {
+        form_name: "keep_me_notified",
+      });
       toast.success("You're on the list! We'll keep you notified.");
       setKeepMeNotifiedEmail("");
     } catch {

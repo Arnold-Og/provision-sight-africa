@@ -2,6 +2,19 @@ import { useEffect } from "react";
 
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
+/** Push to dataLayer for GTM; do not call gtag() directly from React. */
+export function trackEvent(
+  event: string,
+  params: Record<string, unknown> = {}
+) {
+  if (typeof window !== "undefined" && (window as Window & { dataLayer?: unknown[] }).dataLayer) {
+    (window as Window & { dataLayer: unknown[] }).dataLayer.push({
+      event,
+      ...params,
+    });
+  }
+}
+
 export function GoogleAnalytics() {
   useEffect(() => {
     if (typeof window === "undefined" || !GA_MEASUREMENT_ID) return;
