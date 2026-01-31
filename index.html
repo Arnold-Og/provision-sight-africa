@@ -23,6 +23,14 @@
 
   <body>
     <div id="root"></div>
+    <!-- Hidden form for Netlify Forms (SPA): same name/fields so deploy detects it -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

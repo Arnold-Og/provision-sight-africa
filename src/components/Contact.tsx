@@ -6,6 +6,8 @@ import { Textarea } from "./ui/textarea";
 import { toast } from "sonner";
 import ScrollAnimation from "./ScrollAnimation";
 
+const ENCODED_FORM_NAME = "contact";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,11 +15,34 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thank you for your message! We'll get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsSubmitting(true);
+    try {
+      const body = new URLSearchParams({
+        "form-name": ENCODED_FORM_NAME,
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      }).toString();
+
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+      toast.success("Thank you for your message! We'll get back to you soon.");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch {
+      toast.error("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -64,7 +89,15 @@ const Contact = () => {
             </ScrollAnimation>
 
             <ScrollAnimation delay={300}>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form
+                name={ENCODED_FORM_NAME}
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-4"
+              >
+                <input type="hidden" name="form-name" value={ENCODED_FORM_NAME} />
                 <div>
                   <Input
                     type="text"
@@ -113,8 +146,8 @@ const Contact = () => {
                     className="w-full resize-none"
                   />
                 </div>
-                <Button type="submit" className="w-full" size="lg">
-                  Send Message
+                <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending…" : "Send Message"}
                 </Button>
               </form>
             </ScrollAnimation>
