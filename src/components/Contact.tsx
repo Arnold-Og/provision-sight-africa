@@ -98,6 +98,10 @@ const Contact = () => {
       });
 
       if (!res.ok) throw new Error("Submission failed");
+      trackEvent("generate_lead", {
+        form_name: "contact",
+        notification_type: notificationType,
+      });
       toast.success("Thank you for your message! We'll get back to you soon.");
       setFormData({
         name: "",
@@ -177,6 +181,11 @@ const Contact = () => {
                   <a
                     href="mailto:blindsightafrica@gmail.com"
                     className="text-primary hover:underline text-lg"
+                    onClick={() =>
+                      trackEvent("outbound_click", {
+                        link_url: "mailto:blindsightafrica@gmail.com",
+                      })
+                    }
                   >
                     blindsightafrica@gmail.com
                   </a>

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import SectionViewTracker from "@/components/SectionViewTracker";
 
 const About = lazy(() => import("@/components/About"));
 const Features = lazy(() => import("@/components/Features"));
@@ -22,6 +23,7 @@ const Index = () => {
         <Contact />
         <Footer />
       </Suspense>
+      <SectionViewTracker />
     </div>
   );
 };

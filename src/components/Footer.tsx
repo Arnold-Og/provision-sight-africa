@@ -1,6 +1,11 @@
 import { Linkedin, Instagram, Mail } from "lucide-react";
+import { trackEvent } from "./GoogleAnalytics";
 
 const Footer = () => {
+  const handleOutboundClick = (url: string) => {
+    trackEvent("outbound_click", { link_url: url });
+  };
+
   return (
     <footer className="bg-primary text-primary-foreground py-12">
       <div className="container mx-auto px-4">
@@ -20,6 +25,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:text-secondary transition-colors"
                 aria-label="LinkedIn"
+                onClick={() => handleOutboundClick("https://www.linkedin.com/company/provision-sight-africa/")}
               >
                 <Linkedin className="w-6 h-6" />
               </a>
@@ -29,6 +35,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:text-secondary transition-colors"
                 aria-label="Instagram"
+                onClick={() => handleOutboundClick("https://instagram.com/provision_africa")}
               >
                 <Instagram className="w-6 h-6" />
               </a>
@@ -36,6 +43,7 @@ const Footer = () => {
                 href="mailto:blindsightafrica@gmail.com"
                 className="hover:text-secondary transition-colors"
                 aria-label="Email"
+                onClick={() => handleOutboundClick("mailto:blindsightafrica@gmail.com")}
               >
                 <Mail className="w-6 h-6" />
               </a>
