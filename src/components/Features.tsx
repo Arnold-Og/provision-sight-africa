@@ -12,7 +12,7 @@ const Features = () => {
     {
       icon: Navigation,
       title: "Outdoor Navigation",
-      description: "Navigate fields, paths, and open spaces",
+      description: "Navigate fields, paths, and open spaces with the same ease as indoor navigation",
     },
     {
       icon: Users,
