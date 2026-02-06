@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { trackEvent } from "./GoogleAnalytics";
 
-const SECTION_IDS = ["hero", "about", "features", "testimonials", "partners", "contact"];
+const SECTION_IDS = ["hero", "about", "features", "testimonials", "partners", "contact", "beta-cta"];
 
 /**
  * Pushes section_view to dataLayer when each section first enters the viewport.

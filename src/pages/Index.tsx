@@ -8,6 +8,7 @@ const Features = lazy(() => import("@/components/Features"));
 const Testimonials = lazy(() => import("@/components/Testimonials"));
 const Partners = lazy(() => import("@/components/Partners"));
 const Contact = lazy(() => import("@/components/Contact"));
+const BetaCTA = lazy(() => import("@/components/BetaCTA"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
@@ -21,6 +22,7 @@ const Index = () => {
         <Testimonials />
         <Partners />
         <Contact />
+        <BetaCTA />
         <Footer />
       </Suspense>
       <SectionViewTracker />
