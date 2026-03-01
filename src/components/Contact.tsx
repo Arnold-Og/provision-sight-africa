@@ -45,6 +45,16 @@ const KEEP_ME_NOTIFIED_SUBJECT = "Keep me notified – ProVision";
 const KEEP_ME_NOTIFIED_MESSAGE =
   "Please add me to your mailing list for product updates and news.";
 
+/** Valid if it looks like an email (has @ and .) or a phone (7+ digits). */
+function isValidEmailOrPhone(value: string): boolean {
+  const trimmed = value.trim();
+  if (!trimmed) return false;
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+  const digitCount = trimmed.replace(/\D/g, "").length;
+  const isPhone = digitCount >= 7;
+  return isEmail || isPhone;
+}
+
 type FormData = {
   name: string;
   email: string;
@@ -81,6 +91,10 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isValidEmailOrPhone(formData.email)) {
+      toast.error("Please enter a valid email address or phone number.");
+      return;
+    }
     setIsSubmitting(true);
     try {
       const body = new URLSearchParams({
@@ -120,16 +134,20 @@ const Contact = () => {
 
   const handleKeepMeNotified = async (e: React.FormEvent) => {
     e.preventDefault();
-    const email = keepMeNotifiedEmail.trim();
-    if (!email) {
-      toast.error("Please enter your email address.");
+    const value = keepMeNotifiedEmail.trim();
+    if (!value) {
+      toast.error("Please enter your email or phone number.");
+      return;
+    }
+    if (!isValidEmailOrPhone(value)) {
+      toast.error("Please enter a valid email address or phone number.");
       return;
     }
     setIsNotifySubmitting(true);
     try {
       const body = new URLSearchParams({
         "form-name": KEEP_ME_NOTIFIED_FORM_NAME,
-        email,
+        email: value,
         subject: KEEP_ME_NOTIFIED_SUBJECT,
         message: KEEP_ME_NOTIFIED_MESSAGE,
       }).toString();
@@ -222,8 +240,9 @@ const Contact = () => {
                       value={KEEP_ME_NOTIFIED_FORM_NAME}
                     />
                     <Input
-                      type="email"
-                      placeholder="Your email"
+                      type="text"
+                      inputMode="text"
+                      placeholder="Your email or phone number"
                       value={keepMeNotifiedEmail}
                       onChange={(e) => setKeepMeNotifiedEmail(e.target.value)}
                       required
@@ -290,8 +309,9 @@ const Contact = () => {
                 </div>
                 <div>
                   <Input
-                    type="email"
-                    placeholder="Your Email"
+                    type="text"
+                    inputMode="text"
+                    placeholder="Your email or phone number"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
