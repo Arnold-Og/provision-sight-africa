@@ -2,6 +2,13 @@
   publish = "dist"
   command = "npm run build"
 
+# Optional: domain redirect (alternative to public/_redirects)
+# [[redirects]]
+#   from = "/*"
+#   to = "https://provisionsightafrica.com/:splat"
+#   status = 301
+#   force = true
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
