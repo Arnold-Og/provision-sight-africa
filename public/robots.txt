@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://provision.co.ke/sitemap.xml
+Sitemap: https://provisionsightafrica.com/sitemap.xml
