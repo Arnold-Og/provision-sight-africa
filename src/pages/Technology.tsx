@@ -1,7 +1,7 @@
 import ScrollReveal from '@/components/ScrollReveal';
 import AppShowcase from '@/components/AppShowcase';
 import { Eye, Brain, Volume2, Feather } from 'lucide-react';
-import heroDevice from '@/assets/hero-device.jpg';
+import heroDevice from '@/assets/provision-glasses.jpeg';
 import prototypeV3 from '@/assets/prototype-v3.jpeg';
 import PageMeta from '@/components/PageMeta';
 
@@ -50,11 +50,11 @@ const Technology = () => {
       <section className="py-16 bg-card" aria-label="Device visualization">
         <div className="container max-w-4xl">
           <ScrollReveal direction="scale">
-            <div className="relative rounded-2xl overflow-hidden glow-primary">
+            <div className="relative rounded-3xl overflow-hidden glow-primary">
               <img
                 src={heroDevice}
                 alt="Provision Sight Africa smart glasses — a sleek wearable device with integrated camera and AI processing for visually impaired navigation"
-                className="w-full h-auto"
+                className="w-full h-auto scale-105"
               />
             </div>
           </ScrollReveal>

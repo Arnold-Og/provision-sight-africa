@@ -78,7 +78,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 }
 

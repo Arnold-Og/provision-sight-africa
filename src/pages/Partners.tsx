@@ -14,13 +14,13 @@ const partners = [
     name: 'Assistive Technology for Disability Trust',
     type: 'Technology',
     desc: 'Dedicated to developing and distributing assistive technologies for people with disabilities.',
-    url: '#',
+    url: 'https://at4d.org/',
   },
   {
     name: 'AT Innovate Now',
     type: 'Innovation',
     desc: 'Accelerating assistive technology innovation through mentorship and funding support.',
-    url: '#',
+    url: 'https://atinnovatenow.com/',
   },
   {
     name: 'Zero Bionic Africa',
@@ -50,7 +50,7 @@ const partners = [
     name: 'Disability Innovation Institute',
     type: 'Research',
     desc: 'Driving disability research and innovation to create more inclusive societies globally.',
-    url: '#',
+    url: 'https://www.disabilityinnovation.unsw.edu.au/',
   },
 ];
 
@@ -58,7 +58,7 @@ const Partners = () => {
   return (
     <div>
       <PageMeta title="Partners" description="Explore the schools, organizations, and research institutions partnering with Provision Sight Africa to make navigation accessible across Africa." path="/partners" />
-      <section className="py-20 md:py-32" aria-labelledby="partners-heading">
+      <section className="pt-20 pb-10 md:pt-32" aria-labelledby="partners-heading">
         <div className="container max-w-4xl text-center">
           <ScrollReveal>
             <h1 id="partners-heading" className="text-4xl md:text-5xl font-bold text-foreground mb-6">
