@@ -4,7 +4,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { Mail, MapPin, Send } from "lucide-react";
 import { z } from "zod";
 import PageMeta from "@/components/PageMeta";
-import { supabase } from "@/lib/supabase";
+import { supabase, getSubmitErrorMessage } from "@/lib/supabase";
+import { toast } from "sonner";
 
 /** Get In Touch reasons from Join Mission — used to prefill subject/message when navigating from that page. */
 export const CONTACT_REASONS = [
@@ -106,7 +107,9 @@ const Contact = () => {
         message: result.data.message,
       });
       if (error) {
-        setSubmitError("Something went wrong. Please try again or email us directly.");
+        const message = getSubmitErrorMessage(error);
+        setSubmitError(message);
+        toast.error(message);
         setIsSubmitting(false);
         return;
       }
@@ -114,6 +117,7 @@ const Contact = () => {
 
     setIsSubmitting(false);
     setSubmitted(true);
+    toast.success("We've received your message and will get back to you soon.");
   };
 
   return (

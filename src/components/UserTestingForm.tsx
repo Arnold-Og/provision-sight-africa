@@ -2,7 +2,8 @@ import { useState } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { Users, ArrowRight } from 'lucide-react';
 import { z } from 'zod';
-import { supabase } from '@/lib/supabase';
+import { toast } from 'sonner';
+import { supabase, getSubmitErrorMessage } from '@/lib/supabase';
 
 const schema = z.object({
   name: z.string().trim().min(1, 'Name is required'),
@@ -44,7 +45,9 @@ const UserTestingForm = () => {
         location: result.data.location,
       });
       if (error) {
-        setSubmitError("Something went wrong. Please try again later.");
+        const message = getSubmitErrorMessage(error);
+        setSubmitError(message);
+        toast.error(message);
         setIsSubmitting(false);
         return;
       }
@@ -52,6 +55,7 @@ const UserTestingForm = () => {
 
     setIsSubmitting(false);
     setSubmitted(true);
+    toast.success("We'll be in touch about user testing opportunities.");
   };
 
   const inputClass = "w-full px-4 py-3 rounded-lg bg-background border border-input text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow";
