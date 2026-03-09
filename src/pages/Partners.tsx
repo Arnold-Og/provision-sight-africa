@@ -100,7 +100,7 @@ const Partners = () => {
       <section className="pb-20 text-center">
         <ScrollReveal>
           <p className="text-muted-foreground mb-6">Interested in partnering with us?</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent text-accent-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-accent">
+          <Link to="/contact?reason=partner" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent text-accent-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-accent">
             Become a Partner
           </Link>
         </ScrollReveal>

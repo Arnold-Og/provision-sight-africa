@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, Eye } from "lucide-react";
 import heroDevice from "@/assets/provision-glasses.jpeg";
 import provisionLogo from "@/assets/provision-logo.png";
-import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
-import UserJourney from "@/components/UserJourney";
 import AppShowcase from "@/components/AppShowcase";
-import UserTestingForm from "@/components/UserTestingForm";
-import SocialConnect from "@/components/SocialConnect";
 import PageMeta from "@/components/PageMeta";
+import ScrollReveal from "@/components/ScrollReveal";
+import SocialConnect from "@/components/SocialConnect";
+import UserJourney from "@/components/UserJourney";
+import UserTestingForm from "@/components/UserTestingForm";
+import { motion } from "framer-motion";
+import { ArrowRight, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const partners = [
   { name: "Strathmore University", url: "https://www.strathmore.edu" },
@@ -111,7 +111,7 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/contact"
+                to="/contact?reason=request-demo"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-primary"
               >
                 Request a Demo{" "}
@@ -352,7 +352,7 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                to="/contact"
+                to="/contact?reason=request-demo"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-primary"
               >
                 Request a Demo
@@ -370,7 +370,7 @@ const Index = () => {
                 Join User Testing
               </Link>
               <Link
-                to="/contact"
+                to="/contact?reason=contact-team"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-bold hover:bg-muted transition-colors focus-visible-ring"
               >
                 Contact Provision

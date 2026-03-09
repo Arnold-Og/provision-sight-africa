@@ -100,7 +100,7 @@ const Footer = () => {
                 { to: "/about", label: "About Us" },
                 { to: "/technology", label: "Technology" },
                 { to: "/impact", label: "Impact" },
-                { to: "/contact", label: "Contact" },
+                { to: "/contact?reason=contact-team", label: "Contact" },
               ].map((l) => (
                 <li key={l.to}>
                   <Link
@@ -121,7 +121,7 @@ const Footer = () => {
               {[
                 { to: "/join", label: "Join the Mission" },
                 { to: "/partners", label: "Partners" },
-                { to: "/contact", label: "Request a Demo" },
+                { to: "/contact?reason=request-demo", label: "Request a Demo" },
               ].map((l) => (
                 <li key={l.to}>
                   <Link

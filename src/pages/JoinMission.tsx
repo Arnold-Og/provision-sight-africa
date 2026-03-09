@@ -10,28 +10,28 @@ const options = [
     title: 'Request a Demo',
     desc: 'See our technology in action. We offer live demonstrations for organizations, schools, and potential partners.',
     cta: 'Request Demo',
-    to: '/contact',
+    to: '/contact?reason=request-demo',
   },
   {
     icon: Handshake,
     title: 'Partner With Us',
     desc: 'Join our network of schools, organizations, and institutions working together to make navigation accessible.',
     cta: 'Partner With Us',
-    to: '/contact',
+    to: '/contact?reason=partner',
   },
   {
     icon: Heart,
     title: 'Support the Mission',
     desc: 'Your support helps us reach more communities, develop better technology, and create real impact across Africa.',
     cta: 'Get In Touch',
-    to: '/contact',
+    to: '/contact?reason=support',
   },
   {
     icon: Mail,
     title: 'Contact the Team',
     desc: "Have questions? Want to learn more? Reach out — we'd love to hear from you.",
     cta: 'Contact Us',
-    to: '/contact',
+    to: '/contact?reason=contact-team',
   },
 ];
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { Users, ArrowRight } from 'lucide-react';
 import { z } from 'zod';
+import { supabase } from '@/lib/supabase';
 
 const schema = z.object({
   name: z.string().trim().min(1, 'Name is required'),
@@ -15,8 +16,10 @@ const UserTestingForm = () => {
   const [form, setForm] = useState({ name: '', email: '', organization: '', role: '', location: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = schema.safeParse(form);
     if (!result.success) {
@@ -25,9 +28,29 @@ const UserTestingForm = () => {
         if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
       });
       setErrors(fieldErrors);
+      setSubmitError(null);
       return;
     }
     setErrors({});
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    if (supabase) {
+      const { error } = await supabase.from('user_testing_signups').insert({
+        name: result.data.name,
+        email: result.data.email,
+        organization: result.data.organization || null,
+        role: result.data.role,
+        location: result.data.location,
+      });
+      if (error) {
+        setSubmitError("Something went wrong. Please try again later.");
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -91,8 +114,9 @@ const UserTestingForm = () => {
                 <input id="ut-location" type="text" value={form.location} onChange={e => setForm({ ...form, location: e.target.value })} className={inputClass} placeholder="e.g. Nairobi, Kenya" aria-invalid={!!errors.location} />
                 {errors.location && <p className="text-sm text-destructive mt-1" role="alert">{errors.location}</p>}
               </div>
-              <button type="submit" className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-accent">
-                Request to Join User Testing <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              {submitError && <p className="text-sm text-destructive" role="alert">{submitError}</p>}
+              <button type="submit" disabled={isSubmitting} className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-accent disabled:opacity-70 disabled:pointer-events-none">
+                {isSubmitting ? 'Submitting…' : 'Request to Join User Testing'} <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </button>
             </form>
           )}

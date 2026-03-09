@@ -1,8 +1,44 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Mail, MapPin, Send } from "lucide-react";
 import { z } from "zod";
 import PageMeta from "@/components/PageMeta";
+import { supabase } from "@/lib/supabase";
+
+/** Get In Touch reasons from Join Mission — used to prefill subject/message when navigating from that page. */
+export const CONTACT_REASONS = [
+  {
+    id: "request-demo",
+    title: "Request a Demo",
+    defaultSubject: "Request a Demo – Provision Sight Africa",
+    defaultMessage:
+      "I'd like to see your technology in action. Please get in touch to arrange a live demonstration for my organization, school, or as a potential partner.",
+  },
+  {
+    id: "partner",
+    title: "Partner With Us",
+    defaultSubject: "Partnership inquiry – Provision Sight Africa",
+    defaultMessage:
+      "I'm interested in joining your network of schools, organizations, or institutions working to make navigation accessible. I'd like to learn more about partnership opportunities.",
+  },
+  {
+    id: "support",
+    title: "Support the Mission",
+    defaultSubject: "Support the Mission – Provision Sight Africa",
+    defaultMessage:
+      "I'd like to support your mission. Please let me know how I can help you reach more communities, develop better technology, and create impact across Africa.",
+  },
+  {
+    id: "contact-team",
+    title: "Contact the Team",
+    defaultSubject: "Contact the Team – Provision Sight Africa",
+    defaultMessage:
+      "I have questions or would like to learn more about Provision Sight Africa. I'd love to hear from you.",
+  },
+] as const;
+
+const DEFAULT_REASON = CONTACT_REASONS[3]; // Contact the Team
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -12,16 +48,41 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
-  const [form, setForm] = useState({
+  const [searchParams] = useSearchParams();
+  const reasonParam = searchParams.get("reason");
+
+  const initialSubjectAndMessage = useMemo(() => {
+    const reason = CONTACT_REASONS.find((r) => r.id === reasonParam);
+    const r = reason ?? DEFAULT_REASON;
+    return { subject: r.defaultSubject, message: r.defaultMessage };
+  }, [reasonParam]);
+
+  const [form, setForm] = useState<{
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }>({
     name: "",
     email: "",
-    subject: "",
-    message: "",
+    subject: initialSubjectAndMessage.subject,
+    message: initialSubjectAndMessage.message,
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // When navigating from Join Mission with ?reason=..., prefill subject and message
+  useEffect(() => {
+    setForm((prev) => ({
+      ...prev,
+      subject: initialSubjectAndMessage.subject,
+      message: initialSubjectAndMessage.message,
+    }));
+  }, [initialSubjectAndMessage.subject, initialSubjectAndMessage.message]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = contactSchema.safeParse(form);
     if (!result.success) {
@@ -30,9 +91,28 @@ const Contact = () => {
         if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
       });
       setErrors(fieldErrors);
+      setSubmitError(null);
       return;
     }
     setErrors({});
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    if (supabase) {
+      const { error } = await supabase.from("contact_submissions").insert({
+        name: result.data.name,
+        email: result.data.email,
+        subject: result.data.subject,
+        message: result.data.message,
+      });
+      if (error) {
+        setSubmitError("Something went wrong. Please try again or email us directly.");
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -243,11 +323,17 @@ const Contact = () => {
                     </p>
                   )}
                 </div>
+                {submitError && (
+                  <p className="text-sm text-destructive" role="alert">
+                    {submitError}
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-primary"
+                  disabled={isSubmitting}
+                  className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-primary disabled:opacity-70 disabled:pointer-events-none"
                 >
-                  Send Message
+                  {isSubmitting ? "Sending…" : "Send Message"}
                 </button>
               </form>
             )}

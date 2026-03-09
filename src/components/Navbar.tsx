@@ -14,7 +14,7 @@ const navLinks = [
   { to: '/team', label: 'Team' },
   { to: '/partners', label: 'Partners' },
   { to: '/join', label: 'Join the Mission' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/contact?reason=contact-team', label: 'Contact' },
 ];
 
 const Navbar = () => {
