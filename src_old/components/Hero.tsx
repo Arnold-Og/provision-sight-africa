@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { ArrowRight, Globe } from "lucide-react";
 import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-bg.webp";
+import { trackEvent } from "./GoogleAnalytics";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,6 +12,11 @@ const Hero = () => {
   }, []);
 
   const scrollToContact = () => {
+    trackEvent("cta_click", {
+      link_text: "Get Started",
+      section: "hero",
+      destination: "contact",
+    });
     const contactSection = document.getElementById("contact");
     contactSection?.scrollIntoView({ behavior: "smooth" });
   };
@@ -21,13 +27,15 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
           alt="Empowering independence"
           className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-primary/60" />
       </div>
