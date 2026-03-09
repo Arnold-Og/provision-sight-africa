@@ -76,10 +76,10 @@ const SocialConnect = () => {
           </p>
         </ScrollReveal>
 
-        {/* Social links */}
-        <div className="grid sm:grid-cols-3 gap-6 mb-16">
+        {/* Social links: horizontal scroll on mobile, grid from sm */}
+        <div className="flex sm:grid flex-nowrap sm:flex-wrap gap-6 mb-16 overflow-x-auto sm:overflow-visible sm:grid-cols-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {socials.map((s, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
+            <ScrollReveal key={i} delay={i * 0.1} className="flex-shrink-0 min-w-[min(280px,85vw)] sm:min-w-0">
               <a
                 href={s.url}
                 target={s.url.startsWith("mailto") ? undefined : "_blank"}
@@ -113,9 +113,9 @@ const SocialConnect = () => {
             </h3>
           </div>
         </ScrollReveal>
-        <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
+        <div className="flex sm:grid flex-nowrap sm:flex-wrap gap-6 max-w-2xl mx-auto overflow-x-auto sm:overflow-visible grid-cols-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {QR_KEYS.map((key, i) => (
-            <ScrollReveal key={key} delay={i * 0.1}>
+            <ScrollReveal key={key} delay={i * 0.1} className="flex-shrink-0 min-w-[min(200px,70vw)] sm:min-w-0">
               <div className="flex flex-col items-center space-y-4">
                 <div
                   className="relative m-3 cursor-pointer group min-h-[200px] min-w-[200px] flex items-center justify-center rounded-xl bg-muted"
