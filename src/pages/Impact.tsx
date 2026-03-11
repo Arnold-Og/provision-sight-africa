@@ -172,7 +172,7 @@ const Impact = () => {
       </section>
 
       {/* Outreach map placeholder */}
-      <section className="py-16 bg-card" aria-label="Outreach locations">
+      {/* <section className="py-16 bg-card" aria-label="Outreach locations">
         <div className="container max-w-4xl">
           <ScrollReveal>
             <h2 className="text-2xl font-bold text-foreground text-center mb-8">
@@ -194,10 +194,10 @@ const Impact = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials */}
-      <section className="py-16" aria-labelledby="testimonials-heading">
+      <section className="pb-16" aria-labelledby="testimonials-heading">
         <div className="container max-w-5xl">
           <ScrollReveal>
             <h2

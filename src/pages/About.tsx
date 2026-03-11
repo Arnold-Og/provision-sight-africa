@@ -4,7 +4,7 @@ import PageMeta from '@/components/PageMeta';
 
 const milestones = [
   { year: '2023', title: 'The Idea', desc: 'Provision Sight Africa was born from a passion to solve real accessibility challenges using technology.' },
-  { year: '2023', title: 'Early Research', desc: 'Began exploring AI-powered navigation systems and understanding the needs of visually impaired communities.' },
+  { year: '2024', title: 'Early Research', desc: 'Began exploring AI-powered navigation systems and understanding the needs of visually impaired communities.' },
   { year: '2024', title: 'First Prototype', desc: 'Developed the first working prototype of the smart wearable device for testing.' },
   { year: '2024', title: 'Community Testing', desc: 'Partnered with schools and organizations for the visually impaired to test and refine the technology.' },
   { year: '2025', title: 'School Outreach', desc: 'Visited 15+ schools for the visually impaired to conduct awareness and testing sessions.' },

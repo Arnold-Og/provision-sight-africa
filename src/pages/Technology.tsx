@@ -1,7 +1,7 @@
 import ScrollReveal from '@/components/ScrollReveal';
 import AppShowcase from '@/components/AppShowcase';
 import { Eye, Brain, Volume2, Feather } from 'lucide-react';
-import heroDevice from '@/assets/provision-glasses.jpeg';
+import heroDevice from '@/assets/hero-device.jpg';
 import prototypeV3 from '@/assets/prototype-v3.jpeg';
 import PageMeta from '@/components/PageMeta';
 

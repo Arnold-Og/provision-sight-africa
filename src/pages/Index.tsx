@@ -1,4 +1,4 @@
-import heroDevice from "@/assets/provision-glasses.jpeg";
+import heroDevice from "@/assets/hero-device.jpg";
 import provisionLogo from "@/assets/provision-logo.png";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import AppShowcase from "@/components/AppShowcase";
