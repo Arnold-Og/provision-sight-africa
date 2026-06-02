@@ -61,7 +61,7 @@ const Index = () => {
             logo: "https://provision-sight-vision.lovable.app/favicon.ico",
             description:
               "Building affordable AI-powered navigation technology for visually impaired individuals across Africa.",
-            email: "blindsightafrica@gmail.com",
+            email: "contactus@provisionsightafrica.com",
             sameAs: [
               "https://www.instagram.com/provisionsightafrica/",
               "https://linkedin.com/company/provision-sight-africa",

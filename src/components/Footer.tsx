@@ -83,7 +83,7 @@ const Footer = () => {
                 <Linkedin className="w-4 h-4 text-muted-foreground" />
               </a>
               <a
-                href="mailto:blindsightafrica@gmail.com"
+                href="mailto:contactus@provisionsightafrica.com"
                 className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center hover:bg-primary/20 transition-colors focus-visible-ring"
                 aria-label="Email us"
               >
@@ -144,7 +144,7 @@ const Footer = () => {
                   className="w-3.5 h-3.5 inline mr-1.5"
                   aria-hidden="true"
                 />
-                blindsightafrica@gmail.com
+                contactus@provisionsightafrica.com
               </li>
             </ul>
             {/* QR Codes */}

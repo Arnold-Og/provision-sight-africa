@@ -53,7 +53,7 @@ export function formatBetaTesterRole(role: string): string {
 export async function sendContactEmail(payload: ContactEmailPayload) {
   if (!isEmailJsConfigured()) {
     throw new Error(
-      "Email is not configured. Please email us at provisionsightafrica@gmail.com.",
+      "Email is not configured. Please email us at contactus@provisionsightafrica.com.",
     );
   }
 
@@ -74,7 +74,7 @@ export async function sendContactEmail(payload: ContactEmailPayload) {
 export async function sendBetaTesterEmail(payload: BetaTesterEmailPayload) {
   if (!isBetaTesterEmailJsConfigured()) {
     throw new Error(
-      "Email is not configured. Please email us at provisionsightafrica@gmail.com.",
+      "Email is not configured. Please email us at contactus@provisionsightafrica.com.",
     );
   }
 

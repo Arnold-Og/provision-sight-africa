@@ -66,7 +66,7 @@ in your browser to view the ProVision application.
 
 This project is maintained by **ProVision**.
 For partnership, collaboration, or inquiries, please contact us at:
-📧 [blindsightafrica@gmail.com](mailto:blindsightafrica@gmail.com)
+📧 [contactus@provisionsightafrica.com](mailto:contactus@provisionsightafrica.com)
 
 ---
 
