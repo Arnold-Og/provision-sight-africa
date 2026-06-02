@@ -20,8 +20,8 @@ const socials = [
   {
     icon: Mail,
     label: "Email",
-    url: "mailto:blindsightafrica@gmail.com",
-    handle: "blindsightafrica@gmail.com",
+    url: "mailto:contactus@provisionsightafrica.com",
+    handle: "contactus@provisionsightafrica.com",
   },
 ];
 

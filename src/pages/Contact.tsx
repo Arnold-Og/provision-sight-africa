@@ -149,8 +149,8 @@ const Contact = () => {
     } else {
       const message =
         !emailConfigured && !databaseConfigured
-          ? "Contact form is not configured. Please email us at provisionsightafrica@gmail.com."
-          : "Something went wrong. Please try again or email us at provisionsightafrica@gmail.com.";
+          ? "Contact form is not configured. Please email us at contactus@provisionsightafrica.com."
+          : "Something went wrong. Please try again or email us at contactus@provisionsightafrica.com.";
       setSubmitError(message);
       toast.error(message);
     }
@@ -196,7 +196,7 @@ const Contact = () => {
                 />
                 <h3 className="font-bold text-foreground mb-1">Email</h3>
                 <p className="text-sm text-muted-foreground">
-                  provisionsightafrica@gmail.com
+                  contactus@provisionsightafrica.com
                 </p>
               </div>
             </ScrollReveal>

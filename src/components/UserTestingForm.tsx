@@ -100,8 +100,8 @@ const UserTestingForm = () => {
     } else {
       const message =
         !emailConfigured && !databaseConfigured
-          ? "User testing signup is not configured. Please email us at provisionsightafrica@gmail.com."
-          : "Something went wrong. Please try again or email us at provisionsightafrica@gmail.com.";
+          ? "User testing signup is not configured. Please email us at contactus@provisionsightafrica.com."
+          : "Something went wrong. Please try again or email us at contactus@provisionsightafrica.com.";
       setSubmitError(message);
       toast.error(message);
     }
