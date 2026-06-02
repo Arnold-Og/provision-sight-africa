@@ -1,10 +1,12 @@
-import { useState, useMemo, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import ScrollReveal from "@/components/ScrollReveal";
-import { Mail, MapPin, Send } from "lucide-react";
-import { z } from "zod";
 import PageMeta from "@/components/PageMeta";
+import ScrollReveal from "@/components/ScrollReveal";
+import { isEmailJsConfigured, sendContactEmail } from "@/lib/emailjs";
 import { supabase } from "@/lib/supabase";
+import { Mail, MapPin, Send } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
+import { z } from "zod";
 
 /** Get In Touch reasons from Join Mission — used to prefill subject/message when navigating from that page. */
 export const CONTACT_REASONS = [
@@ -98,22 +100,62 @@ const Contact = () => {
     setSubmitError(null);
     setIsSubmitting(true);
 
-    if (supabase) {
-      const { error } = await supabase.from("contact_submissions").insert({
-        name: result.data.name,
-        email: result.data.email,
-        subject: result.data.subject,
-        message: result.data.message,
-      });
-      if (error) {
-        setSubmitError("Something went wrong. Please try again or email us directly.");
-        setIsSubmitting(false);
-        return;
+    const submission = {
+      name: result.data.name,
+      email: result.data.email,
+      subject: result.data.subject,
+      message: result.data.message,
+    };
+
+    const emailConfigured = isEmailJsConfigured();
+    const databaseConfigured = Boolean(supabase);
+
+    let emailSucceeded = false;
+    let databaseSucceeded = false;
+
+    if (emailConfigured) {
+      try {
+        await sendContactEmail(submission);
+        emailSucceeded = true;
+      } catch (err) {
+        console.warn("EmailJS contact send failed:", err);
       }
     }
 
+    if (databaseConfigured && supabase) {
+      const { error } = await supabase
+        .from("contact_submissions")
+        .insert(submission);
+      if (!error) {
+        databaseSucceeded = true;
+      } else {
+        console.warn("Supabase contact insert failed:", error);
+      }
+    }
+
+    if (emailSucceeded || databaseSucceeded) {
+      if (emailConfigured && !emailSucceeded) {
+        console.warn(
+          "Contact submitted via database only; email notification failed.",
+        );
+      }
+      if (databaseConfigured && !databaseSucceeded) {
+        console.warn("Contact submitted via email only; database save failed.");
+      }
+      setSubmitted(true);
+      toast.success(
+        "We've received your message and will get back to you soon.",
+      );
+    } else {
+      const message =
+        !emailConfigured && !databaseConfigured
+          ? "Contact form is not configured. Please email us at contactus@provisionsightafrica.com."
+          : "Something went wrong. Please try again or email us at contactus@provisionsightafrica.com.";
+      setSubmitError(message);
+      toast.error(message);
+    }
+
     setIsSubmitting(false);
-    setSubmitted(true);
   };
 
   return (
@@ -123,7 +165,10 @@ const Contact = () => {
         description="Get in touch with Provision Sight Africa — request a demo, explore partnerships, or ask questions about our accessible navigation technology."
         path="/contact"
       />
-      <section className="pt-20 pb-10 md:pt-32" aria-labelledby="contact-heading">
+      <section
+        className="pt-20 pb-10 md:pt-32"
+        aria-labelledby="contact-heading"
+      >
         <div className="container max-w-4xl text-center">
           <ScrollReveal>
             <h1
@@ -151,7 +196,7 @@ const Contact = () => {
                 />
                 <h3 className="font-bold text-foreground mb-1">Email</h3>
                 <p className="text-sm text-muted-foreground">
-                  provisionsightafrica@gmail.com
+                  contactus@provisionsightafrica.com
                 </p>
               </div>
             </ScrollReveal>

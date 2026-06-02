@@ -1,19 +1,30 @@
-import { useState } from 'react';
-import ScrollReveal from '@/components/ScrollReveal';
-import { Users, ArrowRight } from 'lucide-react';
-import { z } from 'zod';
-import { supabase } from '@/lib/supabase';
+import ScrollReveal from "@/components/ScrollReveal";
+import {
+  isBetaTesterEmailJsConfigured,
+  sendBetaTesterEmail,
+} from "@/lib/emailjs";
+import { supabase } from "@/lib/supabase";
+import { ArrowRight, Users } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const schema = z.object({
-  name: z.string().trim().min(1, 'Name is required'),
-  email: z.string().trim().email('Please enter a valid email'),
+  name: z.string().trim().min(1, "Name is required"),
+  email: z.string().trim().email("Please enter a valid email"),
   organization: z.string().trim().optional(),
-  role: z.string().min(1, 'Please select a role'),
-  location: z.string().trim().min(1, 'Location is required'),
+  role: z.string().min(1, "Please select a role"),
+  location: z.string().trim().min(1, "Location is required"),
 });
 
 const UserTestingForm = () => {
-  const [form, setForm] = useState({ name: '', email: '', organization: '', role: '', location: '' });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    organization: "",
+    role: "",
+    location: "",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -24,7 +35,7 @@ const UserTestingForm = () => {
     const result = schema.safeParse(form);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
-      result.error.errors.forEach(err => {
+      result.error.errors.forEach((err) => {
         if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
       });
       setErrors(fieldErrors);
@@ -35,26 +46,71 @@ const UserTestingForm = () => {
     setSubmitError(null);
     setIsSubmitting(true);
 
-    if (supabase) {
-      const { error } = await supabase.from('user_testing_signups').insert({
-        name: result.data.name,
-        email: result.data.email,
-        organization: result.data.organization || null,
-        role: result.data.role,
-        location: result.data.location,
-      });
-      if (error) {
-        setSubmitError("Something went wrong. Please try again later.");
-        setIsSubmitting(false);
-        return;
+    const submission = {
+      name: result.data.name,
+      email: result.data.email,
+      organization: result.data.organization,
+      role: result.data.role,
+      location: result.data.location,
+    };
+
+    const emailConfigured = isBetaTesterEmailJsConfigured();
+    const databaseConfigured = Boolean(supabase);
+
+    let emailSucceeded = false;
+    let databaseSucceeded = false;
+
+    if (emailConfigured) {
+      try {
+        await sendBetaTesterEmail(submission);
+        emailSucceeded = true;
+      } catch (err) {
+        console.warn("EmailJS beta tester send failed:", err);
       }
     }
 
+    if (databaseConfigured && supabase) {
+      const { error } = await supabase.from("user_testing_signups").insert({
+        name: submission.name,
+        email: submission.email,
+        organization: submission.organization || null,
+        role: submission.role,
+        location: submission.location,
+      });
+      if (!error) {
+        databaseSucceeded = true;
+      } else {
+        console.warn("Supabase user testing insert failed:", error);
+      }
+    }
+
+    if (emailSucceeded || databaseSucceeded) {
+      if (emailConfigured && !emailSucceeded) {
+        console.warn(
+          "User testing signup saved via database only; email notification failed.",
+        );
+      }
+      if (databaseConfigured && !databaseSucceeded) {
+        console.warn(
+          "User testing signup sent via email only; database save failed.",
+        );
+      }
+      setSubmitted(true);
+      toast.success("We'll be in touch about user testing opportunities.");
+    } else {
+      const message =
+        !emailConfigured && !databaseConfigured
+          ? "User testing signup is not configured. Please email us at contactus@provisionsightafrica.com."
+          : "Something went wrong. Please try again or email us at contactus@provisionsightafrica.com.";
+      setSubmitError(message);
+      toast.error(message);
+    }
+
     setIsSubmitting(false);
-    setSubmitted(true);
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg bg-background border border-input text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow";
+  const inputClass =
+    "w-full px-4 py-3 rounded-lg bg-background border border-input text-foreground focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-shadow";
 
   return (
     <section className="py-20" aria-labelledby="testing-heading">
@@ -66,57 +122,172 @@ const UserTestingForm = () => {
               Get Involved
             </span>
           </div>
-          <h2 id="testing-heading" className="text-3xl font-bold text-foreground text-center mb-4">
-            Join Our <span className="text-gradient-accent">User Testing</span> Program
+          <h2
+            id="testing-heading"
+            className="text-3xl font-bold text-foreground text-center mb-4"
+          >
+            Join Our <span className="text-gradient-accent">User Testing</span>{" "}
+            Program
           </h2>
           <p className="text-center text-muted-foreground mb-10 max-w-xl mx-auto">
-            The Provision app is in beta testing. We're working with visually impaired users and partner organizations to improve the system. Join us.
+            The Provision app is in beta testing. We're working with visually
+            impaired users and partner organizations to improve the system. Join
+            us.
           </p>
         </ScrollReveal>
 
         <ScrollReveal>
           {submitted ? (
-            <div className="text-center p-12 rounded-xl bg-card border border-primary/30" role="status">
-              <h3 className="text-2xl font-bold text-foreground mb-3">Thank You!</h3>
-              <p className="text-muted-foreground">We'll be in touch about user testing opportunities.</p>
+            <div
+              className="text-center p-12 rounded-xl bg-card border border-primary/30"
+              role="status"
+            >
+              <h3 className="text-2xl font-bold text-foreground mb-3">
+                Thank You!
+              </h3>
+              <p className="text-muted-foreground">
+                We'll be in touch about user testing opportunities.
+              </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="p-8 rounded-xl bg-card border border-border space-y-5" noValidate>
+            <form
+              onSubmit={handleSubmit}
+              className="p-8 rounded-xl bg-card border border-border space-y-5"
+              noValidate
+            >
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="ut-name" className="block text-sm font-bold text-foreground mb-2">Name *</label>
-                  <input id="ut-name" type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} className={inputClass} aria-invalid={!!errors.name} />
-                  {errors.name && <p className="text-sm text-destructive mt-1" role="alert">{errors.name}</p>}
+                  <label
+                    htmlFor="ut-name"
+                    className="block text-sm font-bold text-foreground mb-2"
+                  >
+                    Name *
+                  </label>
+                  <input
+                    id="ut-name"
+                    type="text"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className={inputClass}
+                    aria-invalid={!!errors.name}
+                  />
+                  {errors.name && (
+                    <p className="text-sm text-destructive mt-1" role="alert">
+                      {errors.name}
+                    </p>
+                  )}
                 </div>
                 <div>
-                  <label htmlFor="ut-email" className="block text-sm font-bold text-foreground mb-2">Email *</label>
-                  <input id="ut-email" type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} className={inputClass} aria-invalid={!!errors.email} />
-                  {errors.email && <p className="text-sm text-destructive mt-1" role="alert">{errors.email}</p>}
+                  <label
+                    htmlFor="ut-email"
+                    className="block text-sm font-bold text-foreground mb-2"
+                  >
+                    Email *
+                  </label>
+                  <input
+                    id="ut-email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm({ ...form, email: e.target.value })
+                    }
+                    className={inputClass}
+                    aria-invalid={!!errors.email}
+                  />
+                  {errors.email && (
+                    <p className="text-sm text-destructive mt-1" role="alert">
+                      {errors.email}
+                    </p>
+                  )}
                 </div>
               </div>
               <div>
-                <label htmlFor="ut-org" className="block text-sm font-bold text-foreground mb-2">Organization (optional)</label>
-                <input id="ut-org" type="text" value={form.organization} onChange={e => setForm({ ...form, organization: e.target.value })} className={inputClass} />
+                <label
+                  htmlFor="ut-org"
+                  className="block text-sm font-bold text-foreground mb-2"
+                >
+                  Organization (optional)
+                </label>
+                <input
+                  id="ut-org"
+                  type="text"
+                  value={form.organization}
+                  onChange={(e) =>
+                    setForm({ ...form, organization: e.target.value })
+                  }
+                  className={inputClass}
+                />
               </div>
               <div>
-                <label htmlFor="ut-role" className="block text-sm font-bold text-foreground mb-2">I am... *</label>
-                <select id="ut-role" value={form.role} onChange={e => setForm({ ...form, role: e.target.value })} className={inputClass} aria-invalid={!!errors.role}>
+                <label
+                  htmlFor="ut-role"
+                  className="block text-sm font-bold text-foreground mb-2"
+                >
+                  I am... *
+                </label>
+                <select
+                  id="ut-role"
+                  value={form.role}
+                  onChange={(e) => setForm({ ...form, role: e.target.value })}
+                  className={inputClass}
+                  aria-invalid={!!errors.role}
+                >
                   <option value="">Select an option</option>
-                  <option value="visually-impaired">A visually impaired individual</option>
-                  <option value="supporter">Supporting accessibility work</option>
-                  <option value="organization">Representing an organization</option>
-                  <option value="researcher">A researcher in assistive technology</option>
+                  <option value="visually-impaired">
+                    A visually impaired individual
+                  </option>
+                  <option value="supporter">
+                    Supporting accessibility work
+                  </option>
+                  <option value="organization">
+                    Representing an organization
+                  </option>
+                  <option value="researcher">
+                    A researcher in assistive technology
+                  </option>
                 </select>
-                {errors.role && <p className="text-sm text-destructive mt-1" role="alert">{errors.role}</p>}
+                {errors.role && (
+                  <p className="text-sm text-destructive mt-1" role="alert">
+                    {errors.role}
+                  </p>
+                )}
               </div>
               <div>
-                <label htmlFor="ut-location" className="block text-sm font-bold text-foreground mb-2">Location *</label>
-                <input id="ut-location" type="text" value={form.location} onChange={e => setForm({ ...form, location: e.target.value })} className={inputClass} placeholder="e.g. Nairobi, Kenya" aria-invalid={!!errors.location} />
-                {errors.location && <p className="text-sm text-destructive mt-1" role="alert">{errors.location}</p>}
+                <label
+                  htmlFor="ut-location"
+                  className="block text-sm font-bold text-foreground mb-2"
+                >
+                  Location *
+                </label>
+                <input
+                  id="ut-location"
+                  type="text"
+                  value={form.location}
+                  onChange={(e) =>
+                    setForm({ ...form, location: e.target.value })
+                  }
+                  className={inputClass}
+                  placeholder="e.g. Nairobi, Kenya"
+                  aria-invalid={!!errors.location}
+                />
+                {errors.location && (
+                  <p className="text-sm text-destructive mt-1" role="alert">
+                    {errors.location}
+                  </p>
+                )}
               </div>
-              {submitError && <p className="text-sm text-destructive" role="alert">{submitError}</p>}
-              <button type="submit" disabled={isSubmitting} className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-accent disabled:opacity-70 disabled:pointer-events-none">
-                {isSubmitting ? 'Submitting…' : 'Request to Join User Testing'} <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              {submitError && (
+                <p className="text-sm text-destructive" role="alert">
+                  {submitError}
+                </p>
+              )}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-secondary text-secondary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-accent disabled:opacity-70 disabled:pointer-events-none"
+              >
+                {isSubmitting ? "Submitting…" : "Request to Join User Testing"}{" "}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </button>
             </form>
           )}

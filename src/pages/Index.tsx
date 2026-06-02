@@ -1,4 +1,4 @@
-import heroDevice from "@/assets/provision-glasses.jpeg";
+import heroDevice from "@/assets/hero-device.jpg";
 import provisionLogo from "@/assets/provision-logo.png";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import AppShowcase from "@/components/AppShowcase";
@@ -61,7 +61,7 @@ const Index = () => {
             logo: "https://provision-sight-vision.lovable.app/favicon.ico",
             description:
               "Building affordable AI-powered navigation technology for visually impaired individuals across Africa.",
-            email: "blindsightafrica@gmail.com",
+            email: "contactus@provisionsightafrica.com",
             sameAs: [
               "https://www.instagram.com/provisionsightafrica/",
               "https://linkedin.com/company/provision-sight-africa",

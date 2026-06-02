@@ -40,10 +40,10 @@ const Footer = () => {
                 <Instagram className="w-6 h-6" />
               </a>
               <a
-                href="mailto:blindsightafrica@gmail.com"
+                href="mailto:contactus@provisionsightafrica.com"
                 className="hover:text-secondary transition-colors"
                 aria-label="Email"
-                onClick={() => handleOutboundClick("mailto:blindsightafrica@gmail.com")}
+                onClick={() => handleOutboundClick("mailto:contactus@provisionsightafrica.com")}
               >
                 <Mail className="w-6 h-6" />
               </a>

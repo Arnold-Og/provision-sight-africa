@@ -197,15 +197,15 @@ const Contact = () => {
                     Email Us
                   </p>
                   <a
-                    href="mailto:blindsightafrica@gmail.com"
+                    href="mailto:contactus@provisionsightafrica.com"
                     className="text-primary hover:underline text-lg"
                     onClick={() =>
                       trackEvent("outbound_click", {
-                        link_url: "mailto:blindsightafrica@gmail.com",
+                        link_url: "mailto:contactus@provisionsightafrica.com",
                       })
                     }
                   >
-                    blindsightafrica@gmail.com
+                    contactus@provisionsightafrica.com
                   </a>
                 </div>
                 <div className="p-6 rounded-lg bg-card border-2 border-border space-y-4">
