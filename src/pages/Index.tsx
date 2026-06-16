@@ -3,6 +3,7 @@ import provisionLogo from "@/assets/provision-logo.png";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import AppShowcase from "@/components/AppShowcase";
 import PageMeta from "@/components/PageMeta";
+import PartnersMarquee from "@/components/PartnersMarquee";
 import ScrollReveal from "@/components/ScrollReveal";
 import SocialConnect from "@/components/SocialConnect";
 import UserJourney from "@/components/UserJourney";
@@ -10,18 +11,6 @@ import UserTestingForm from "@/components/UserTestingForm";
 import { motion } from "framer-motion";
 import { ArrowRight, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const partners = [
-  { name: "Strathmore University", url: "https://www.strathmore.edu" },
-  {
-    name: "Kilimanjaro Blind Trust Africa",
-    url: "https://www.kilimanjaroblindtrustafrica.org",
-  },
-  { name: "Zero Bionic Africa", url: "https://www.zerobionicafrica.com" },
-  { name: "Bridge for Billions", url: "https://www.bridgeforbillions.org" },
-  { name: "StartHub Africa", url: "https://www.starthubafrica.org" },
-  { name: "AT Innovate Now", url: "#" },
-];
 
 const ParticleField = () => (
   <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
@@ -301,22 +290,7 @@ const Index = () => {
               and deploy accessible technology.
             </p>
           </ScrollReveal>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {partners.map((p, i) => (
-              <ScrollReveal key={i} delay={i * 0.08}>
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center p-4 h-20 rounded-xl border border-border bg-background hover:border-primary/30 transition-colors text-center"
-                >
-                  <span className="text-sm font-bold text-muted-foreground hover:text-foreground transition-colors">
-                    {p.name}
-                  </span>
-                </a>
-              </ScrollReveal>
-            ))}
-          </div>
+          <PartnersMarquee />
           <ScrollReveal>
             <div className="text-center mt-10">
               <Link

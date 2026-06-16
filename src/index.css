@@ -129,6 +129,26 @@
     animation: pulse-glow 3s ease-in-out infinite;
   }
 
+  /* Partner logo marquee */
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee-scroll 40s linear infinite;
+  }
+
+  .marquee-paused:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
+  }
+
   /* Focus styles for keyboard navigation */
   .focus-visible-ring:focus-visible {
     @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;

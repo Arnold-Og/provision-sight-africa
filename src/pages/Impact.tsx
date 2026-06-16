@@ -27,14 +27,7 @@ const testimonials = [
   },
 ];
 
-const outreachLocations = [
-  "Lagos, Nigeria",
-  "Accra, Ghana",
-  "Nairobi, Kenya",
-  "Kampala, Uganda",
-  "Dar es Salaam, Tanzania",
-  "Kigali, Rwanda",
-];
+const outreachLocations = ["Nairobi, Kenya", "Dar es Salaam, Tanzania"];
 
 const CARD_WIDTH = 280;
 const CARD_GAP = 24;
@@ -88,7 +81,10 @@ const Impact = () => {
               <AnimatedCounter end={10} label="Partnerships" />
             </ScrollReveal>
             <ScrollReveal delay={0.4}>
-              <AnimatedCounter end={6} label="Countries" />
+              <AnimatedCounter end={2} label="Countries" />
+              <p className="text-center text-xs text-muted-foreground mt-1">
+                Kenya &amp; Tanzania
+              </p>
             </ScrollReveal>
           </div>
         </div>

@@ -19,6 +19,7 @@ import kilimanjaro3 from '@/assets/Picture 3- Kilimanjaro Blind Trust user testi
 import latitude591 from '@/assets/Picture 1- Latitude59.jpg';
 import latitude592 from '@/assets/Picture 2- Latitude59.jpg';
 import latitude593 from '@/assets/Picture 3- Latitude59.jpg';
+import provisionLogo from '@/assets/provision-logo.png';
 
 export interface OutreachImage {
   src: string;
@@ -111,6 +112,17 @@ export const outreaches: Outreach[] = [
       { src: latitude593, alt: 'Latitude59 startup event' },
     ],
     body: 'ProVision Sight Africa participated in the Latitude59 technology and startup conference, an engagement facilitated through Strathmore University. During the event, the team had the distinct privilege of pitching their visually assistive solution to a global audience of investors and innovators, including prominent figures such as Dr. Jusper Omwenga and Patricia Lagat. The experience served as a critical catalyst for the startup, offering two primary spheres of professional growth: the refinement of existing technical knowledge through diverse expert perspectives and the discovery of novel solutions and market opportunities previously outside the team\'s internal scope. This high-level exposure, supported by the collaborative efforts of team members Clinton Njoroge, Furaha Kinuthia, Victoria Mwaura, and Arnold Oguda has fundamentally shifted the startup\'s strategic approach to inclusive innovation, reinforcing their commitment to building context-aware tools that address the complex navigation challenges faced by the visually impaired community.',
+  },
+  {
+    id: 'kenya-union-blind',
+    title: 'Kenya Union of the Blind Outreach Visit',
+    date: '27th March 2026 — Nairobi',
+    images: [
+      { src: provisionLogo, alt: 'ProVision Sight Africa community outreach visit at the Kenya Union of the Blind' },
+      { src: provisionLogo, alt: 'ProVision Sight Africa logo' },
+      { src: provisionLogo, alt: 'ProVision Sight Africa logo' },
+    ],
+    body: 'ProVision Sight Africa held a community outreach visit at the Kenya Union of the Blind in Nairobi on 27th March 2026, bringing together 15 visually impaired community members for a hands-on demonstration and feedback session. After an introduction to the ProVision project, each participant had the chance to wear the smart glasses, navigate their surroundings, and experience the real-time audio feedback first-hand before sharing candid observations. The feedback was rich and practical: users asked for full TalkBack compatibility and multiple voice options, richer and more descriptive scene descriptions with an option to "ask for more," a live reading mode for signs and labels, recognition of familiar places, dual-camera support, and more consistent object labelling. Participants also encouraged further field testing and raised an important privacy concern, that bystanders sometimes assume the glasses are recording them, recommending clearer visual indicators and design changes. This grounding engagement reinforced ProVision\'s commitment to co-creating its technology with the community it serves, and the priorities raised will directly shape the next phase of product development.',
   },
 ];
 
