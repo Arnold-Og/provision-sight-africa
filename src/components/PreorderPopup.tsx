@@ -1,24 +1,25 @@
-import provisionGlasses from "@/assets/provision-glasses.jpeg";
+import provisionGlasses from "@/assets/hero-device.jpg";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { usePreorder } from "@/contexts/PreorderContext";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const STORAGE_KEY = "psa-preorder-popup-seen";
 
 const PreorderPopup = () => {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = usePreorder();
 
   useEffect(() => {
     if (sessionStorage.getItem(STORAGE_KEY)) return;
     const timer = setTimeout(() => setOpen(true), 1200);
     return () => clearTimeout(timer);
-  }, []);
+  }, [setOpen]);
 
   const dismiss = () => {
     sessionStorage.setItem(STORAGE_KEY, "1");
@@ -63,7 +64,8 @@ const PreorderPopup = () => {
               onClick={dismiss}
               className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-bold text-primary-foreground transition-opacity hover:opacity-90 focus-visible-ring glow-primary"
             >
-              Pre-order Now <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              Pre-order Now{" "}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <button
               type="button"
