@@ -1,6 +1,7 @@
 import Navbar from './Navbar';
 import Footer from './Footer';
 import AccessibilityToolbar from './AccessibilityToolbar';
+import PreorderPopup from './PreorderPopup';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -18,6 +19,7 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
       <Footer />
+      <PreorderPopup />
     </div>
   );
 };

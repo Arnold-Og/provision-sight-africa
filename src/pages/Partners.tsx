@@ -2,57 +2,8 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { Link } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import PageMeta from '@/components/PageMeta';
-
-const partners = [
-  {
-    name: 'Kilimanjaro Blind Trust Africa',
-    type: 'Advocacy',
-    desc: 'Supporting visually impaired communities across East Africa through assistive technology and rehabilitation.',
-    url: 'https://www.kilimanjaroblindtrustafrica.org',
-  },
-  {
-    name: 'Assistive Technology for Disability Trust',
-    type: 'Technology',
-    desc: 'Dedicated to developing and distributing assistive technologies for people with disabilities.',
-    url: 'https://at4d.org/',
-  },
-  {
-    name: 'AT Innovate Now',
-    type: 'Innovation',
-    desc: 'Accelerating assistive technology innovation through mentorship and funding support.',
-    url: 'https://atinnovatenow.com/',
-  },
-  {
-    name: 'Zero Bionic Africa',
-    type: 'Technology',
-    desc: 'Building affordable bionic and assistive devices for amputees and people with disabilities across Africa.',
-    url: 'https://www.zerobionicafrica.com',
-  },
-  {
-    name: 'StartHub Africa',
-    type: 'Accelerator',
-    desc: 'Supporting early-stage social enterprises and startups in Africa with mentorship and resources.',
-    url: 'https://www.starthubafrica.org',
-  },
-  {
-    name: 'Strathmore University',
-    type: 'Research',
-    desc: 'Academic partner providing research support, innovation facilities, and student collaboration.',
-    url: 'https://www.strathmore.edu',
-  },
-  {
-    name: 'Bridge for Billions',
-    type: 'Mentorship',
-    desc: 'Global incubation program connecting entrepreneurs with mentors to develop impactful business models.',
-    url: 'https://www.bridgeforbillions.org',
-  },
-  {
-    name: 'Disability Innovation Institute',
-    type: 'Research',
-    desc: 'Driving disability research and innovation to create more inclusive societies globally.',
-    url: 'https://www.disabilityinnovation.unsw.edu.au/',
-  },
-];
+import PartnersMarquee from '@/components/PartnersMarquee';
+import { partners } from '@/data/partners';
 
 const Partners = () => {
   return (
@@ -69,6 +20,12 @@ const Partners = () => {
             </p>
           </ScrollReveal>
         </div>
+      </section>
+
+      <section className="pb-10" aria-label="Partner logos">
+        <ScrollReveal>
+          <PartnersMarquee />
+        </ScrollReveal>
       </section>
 
       <section className="pb-20" aria-label="Partner organizations">

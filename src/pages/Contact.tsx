@@ -18,6 +18,13 @@ export const CONTACT_REASONS = [
       "I'd like to see your technology in action. Please get in touch to arrange a live demonstration for my organization, school, or as a potential partner.",
   },
   {
+    id: "preorder",
+    title: "Pre-order the Glasses",
+    defaultSubject: "Pre-order / Order – Provision Sight Africa Smart Glasses",
+    defaultMessage:
+      "I'd like to pre-order/order the Provision Sight Africa smart glasses. Please share availability, pricing, and the next steps to reserve a pair.",
+  },
+  {
     id: "partner",
     title: "Partner With Us",
     defaultSubject: "Partnership inquiry – Provision Sight Africa",
@@ -207,7 +214,7 @@ const Contact = () => {
                   aria-hidden="true"
                 />
                 <h3 className="font-bold text-foreground mb-1">Location</h3>
-                <p className="text-sm text-muted-foreground">Africa</p>
+                <p className="text-sm text-muted-foreground">Nairobi, Kenya</p>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
