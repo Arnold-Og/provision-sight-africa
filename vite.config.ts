@@ -8,6 +8,16 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      "/sight": {
+        target: "http://127.0.0.1:7860",
+        changeOrigin: true,
+      },
+      "/health": {
+        target: "http://127.0.0.1:7860",
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

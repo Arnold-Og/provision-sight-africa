@@ -100,10 +100,10 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/contact?reason=request-demo"
+                to="/demo"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-primary"
               >
-                Request a Demo{" "}
+                Try It Live{" "}
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
               <Link
@@ -326,10 +326,10 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                to="/contact?reason=request-demo"
+                to="/demo"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-bold hover:opacity-90 transition-opacity focus-visible-ring glow-primary"
               >
-                Request a Demo
+                Try the Demo
               </Link>
               <Link
                 to="/join"

@@ -19,6 +19,7 @@ const Team = lazy(() => import("./pages/Team"));
 const Partners = lazy(() => import("./pages/Partners"));
 const JoinMission = lazy(() => import("./pages/JoinMission"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Demo = lazy(() => import("./pages/Demo"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ const App = () => (
                   <Route path="/partners" element={<Partners />} />
                   <Route path="/join" element={<JoinMission />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/demo" element={<Demo />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
