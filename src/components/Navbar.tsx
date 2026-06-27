@@ -6,6 +6,7 @@ import provisionLogo from '@/assets/provision-logo.png';
 
 const navLinks = [
   { to: '/', label: 'Home' },
+  { to: '/demo', label: 'Try Demo' },
   { to: '/about', label: 'About' },
   { to: '/technology', label: 'Technology' },
   { to: '/how-it-works', label: 'How It Works' },

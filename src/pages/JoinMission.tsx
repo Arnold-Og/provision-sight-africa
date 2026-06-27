@@ -7,10 +7,10 @@ import PageMeta from '@/components/PageMeta';
 const options = [
   {
     icon: Eye,
-    title: 'Request a Demo',
-    desc: 'See our technology in action. We offer live demonstrations for organizations, schools, and potential partners.',
-    cta: 'Request Demo',
-    to: '/contact?reason=request-demo',
+    title: 'Try the Demo',
+    desc: 'Experience assistive vision right in your browser — point your camera and hear AI-powered scene descriptions in real time.',
+    cta: 'Try Demo',
+    to: '/demo',
   },
   {
     icon: Handshake,

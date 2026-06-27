@@ -121,7 +121,7 @@ const Footer = () => {
               {[
                 { to: "/join", label: "Join the Mission" },
                 { to: "/partners", label: "Partners" },
-                { to: "/contact?reason=request-demo", label: "Request a Demo" },
+                { to: "/demo", label: "Try the Demo" },
               ].map((l) => (
                 <li key={l.to}>
                   <Link
