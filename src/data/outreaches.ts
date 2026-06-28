@@ -22,6 +22,9 @@ import latitude593 from '@/assets/Picture 3- Latitude59.jpg';
 import kub1 from '@/assets/KUB 1.jpeg';
 import kub2 from '@/assets/KUB 2.jpeg';
 import kub3 from '@/assets/KUB 3.jpeg';
+import brailleChallenge1 from '@/assets/Picture 1- Braille Challenge Thika High School for the Blind.jpeg';
+import brailleChallenge2 from '@/assets/Picture 2- Braille Challenge Thika High School for the Blind.jpeg';
+import brailleChallenge3 from '@/assets/Picture 3- Braille Challenge Thika High School for the Blind.jpeg';
 
 export interface OutreachImage {
   src: string;
@@ -125,6 +128,17 @@ export const outreaches: Outreach[] = [
       { src: kub3, alt: 'Kenya Union of the Blind outreach — participant feedback session' },
     ],
     body: 'ProVision Sight Africa held a community outreach visit at the Kenya Union of the Blind in Nairobi on 27th March 2026, bringing together 15 visually impaired community members for a hands-on demonstration and feedback session. After an introduction to the ProVision project, each participant had the chance to wear the smart glasses, navigate their surroundings, and experience the real-time audio feedback first-hand before sharing candid observations. The feedback was rich and practical: users asked for full TalkBack compatibility and multiple voice options, richer and more descriptive scene descriptions with an option to "ask for more," a live reading mode for signs and labels, recognition of familiar places, dual-camera support, and more consistent object labelling. Participants also encouraged further field testing and raised an important privacy concern, that bystanders sometimes assume the glasses are recording them, recommending clearer visual indicators and design changes. This grounding engagement reinforced ProVision\'s commitment to co-creating its technology with the community it serves, and the priorities raised will directly shape the next phase of product development.',
+  },
+  {
+    id: 'braille-challenge-thika',
+    title: 'Regional Braille Challenge — Thika High School for the Visually Impaired',
+    date: '14th June 2026 — Thika',
+    images: [
+      { src: brailleChallenge1, alt: 'ProVision Sight Africa at the Regional Braille Challenge at Thika High School for the Visually Impaired' },
+      { src: brailleChallenge2, alt: 'Regional Braille Challenge — students engaging with accessible educational formats' },
+      { src: brailleChallenge3, alt: 'Braille Challenge at Thika High School for the Visually Impaired' },
+    ],
+    body: 'ProVision Sight Africa participated in the pioneering Regional Braille Challenge hosted at Thika High School for the Visually Impaired alongside the corresponding primary institution. Collaborating with prominent ecosystem actors such as eKitabu, the Clovernook Center for the Blind and Visually Impaired, Hisi Studio, EduTab Africa, and the Braille Institute of America, the startup contributed to a landmark initiative dedicated to advancing accessible educational frameworks.\n\nBeyond the formal programming, the event highlighted the profound impact of inclusive innovation as students eagerly interacted with newly accessible formats beyond traditional braille, demonstrating a deep curiosity and determination to navigate a world historically unaccommodating to their needs. This experience validated the core mission of ProVision Sight Africa, emphasizing the reality that true accessibility serves as the fundamental baseline for equitable learning, personal dignity, and expanded opportunities rather than a secondary enhancement.\n\nMoving forward, the team remains deeply grateful for these strategic alliances and is more committed than ever to dismantling systemic barriers through intelligent assistive technology within the Kenyan educational landscape.',
   },
 ];
 
