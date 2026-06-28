@@ -25,6 +25,9 @@ import kub3 from '@/assets/KUB 3.jpeg';
 import brailleChallenge1 from '@/assets/Picture 1- Braille Challenge Thika High School for the Blind.jpeg';
 import brailleChallenge2 from '@/assets/Picture 2- Braille Challenge Thika High School for the Blind.jpeg';
 import brailleChallenge3 from '@/assets/Picture 3- Braille Challenge Thika High School for the Blind.jpeg';
+import insightLive1 from '@/assets/Picture 1- 2030InsightLive Nairobi.jpeg';
+import insightLive2 from '@/assets/Picture 2- 2030InsightLive Nairobi.jpeg';
+import insightLive3 from '@/assets/Picture 3- 2030InsightLive Nairobi.jpeg';
 
 export interface OutreachImage {
   src: string;
@@ -41,6 +44,17 @@ export interface Outreach {
 
 /** Community outreaches & milestones — newest first. */
 export const outreaches: Outreach[] = [
+  {
+    id: '2030-insight-live',
+    title: '2030InsightLive — Nairobi',
+    date: 'June 2026 — Nairobi',
+    images: [
+      { src: insightLive1, alt: 'ProVision Sight Africa at the 2030InsightLive event in Nairobi' },
+      { src: insightLive2, alt: '2030InsightLive — discussions on eye health and inclusive care systems' },
+      { src: insightLive3, alt: '2030InsightLive event celebrating global health and equality' },
+    ],
+    body: 'ProVision Sight Africa was incredibly moved by the reflections shared following the 2030InsightLive event in Nairobi. The gathering highlighted the massive economic and social benefits of prioritizing eye health, noting that a single dollar invested brings twenty-eight dollars back to developing communities while greatly improving education, fighting poverty, and restoring personal dignity. The conversations made it clear that true progress requires building health systems that genuinely put people first, ensuring care is fair, inclusive, and easy to access.\n\nFor the team, it was a deeply proud moment to be highlighted as a prime example of how technology can drive this integration, with ProVision smart glasses being recognized for enabling independent navigation. The event also served as a beautiful reminder of the power of storytelling, celebrating the strong teamwork between governments, faith based organizations, and training institutions like the Kenya Medical Training College.\n\nHearing these insights, alongside discussions on the World Health Organization research agenda, strongly validated the team\'s daily work and reminded them that ProVision\'s innovation is a vital piece of a much larger movement toward global health and equality.',
+  },
   {
     id: 'braille-challenge-thika',
     title: 'Regional Braille Challenge — Thika High School for the Visually Impaired',
