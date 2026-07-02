@@ -267,7 +267,7 @@ const Index = () => {
       </section>
 
       {/* App Showcase */}
-      <AppShowcase />
+      {/* <AppShowcase /> */}
 
       {/* User Testing */}
       <UserTestingForm />
