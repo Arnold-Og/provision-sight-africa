@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import provisionLogo from '@/assets/provision-logo.png';
 
 const navLinks = [
-  { to: '/', label: 'Home' },
   { to: '/demo', label: 'Try Demo' },
   { to: '/about', label: 'About' },
   { to: '/technology', label: 'Technology' },

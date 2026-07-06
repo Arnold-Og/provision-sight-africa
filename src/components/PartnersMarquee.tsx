@@ -4,13 +4,14 @@ const PartnerTile = ({ partner }: { partner: Partner }) => {
   const isLink = partner.url && partner.url !== "#";
   const content = (
     <>
-      <div className="flex h-20 w-40 items-center justify-center rounded-xl border border-border bg-background px-4 transition-colors group-hover:border-primary/40">
+      <div className="flex h-40 w-60 items-center justify-center rounded-xl border border-border bg-background px-4 transition-colors group-hover:border-primary/40">
         {partner.logo ? (
           <img
             src={partner.logo}
             alt={`${partner.name} logo`}
-            className="max-h-12 w-auto object-contain"
+            className="max-h-36 w-auto object-contain"
             loading="lazy"
+            decoding="async"
           />
         ) : (
           <span className="text-2xl font-extrabold tracking-tight text-gradient-primary">
