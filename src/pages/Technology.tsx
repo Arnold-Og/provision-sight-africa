@@ -87,7 +87,7 @@ const Technology = () => {
             <ScrollReveal direction="left">
               <div className="rounded-2xl overflow-hidden border border-border glow-primary">
                 <img
-                  src={prototypeV3}
+                  src={heroDevice}
                   alt="Version 3 Prototype of Provision wearable navigation glasses alongside a 3D-printed head model at Strathmore University Ideas Festival"
                   className="w-full h-auto"
                   loading="lazy"
@@ -118,7 +118,7 @@ const Technology = () => {
       </section>
 
       {/* App Showcase */}
-      <AppShowcase />
+      {/* <AppShowcase /> */}
     </div>
   );
 };
