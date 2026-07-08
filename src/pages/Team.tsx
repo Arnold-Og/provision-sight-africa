@@ -26,6 +26,16 @@ const team = [
     role: "COO",
     bio: "Responsible for partnerships and operational coordination. Building relationships with schools, organizations, and communities.",
   },
+  {
+    name: "Wilson Kinyanjui",
+    role: "CIO",
+    bio: "Responsible for infrastructure and technology. Building the infrastructure that power the Provision navigation platform.",
+  },
+  {
+    name: "Clinton Bor",
+    role: "Product Development Lead",
+    bio: "Responsible for product development. Building the product that power the Provision navigation platform.",
+  },
 ];
 
 const Team = () => {
@@ -56,7 +66,7 @@ const Team = () => {
       {/* Team members */}
       <section className="mb-20" aria-label="Team members">
         <div className="container max-w-5xl">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-4">
             {team.map((m, i) => (
               <ScrollReveal key={i} delay={i * 0.1} className="h-full">
                 <motion.div
