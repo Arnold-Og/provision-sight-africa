@@ -6,7 +6,7 @@ export const sightConfig: ProvisionConfig = {
     import.meta.env.VITE_SIGHT_API_URL ??
     (import.meta.env.DEV
       ? ""
-      : "https://b57wegf5vb6wp9-7860.proxy.runpod.net"),
+      : "https://46xj55v15o8nil-7860.proxy.runpod.net"),
   describePath: "/sight/describe",
   readyPath: "/sight/ready",
   captureIntervalMs: 10000,
