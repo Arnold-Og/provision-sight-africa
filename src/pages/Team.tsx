@@ -32,7 +32,7 @@ const team = [
     bio: "Responsible for infrastructure and technology. Building the infrastructure that power the Provision navigation platform.",
   },
   {
-    name: "Clinton Bor",
+    name: "Dennis Kioko",
     role: "Product Development Lead",
     bio: "Responsible for product development. Building the product that power the Provision navigation platform.",
   },
